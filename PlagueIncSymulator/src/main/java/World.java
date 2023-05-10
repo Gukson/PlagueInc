@@ -3,6 +3,9 @@ public class World {
     public static int population;
     public int infected_population;
     public int dead_populati9on;
+
+    public static Virus wirus;
+
     public static void setPopulation(int population){
         World.population = population;
     }

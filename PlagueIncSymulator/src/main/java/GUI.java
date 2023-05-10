@@ -1,16 +1,17 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame implements ActionListener {
     JFrame okno;
 
-    private final int width = 1440;
-    private final int height = 810;
+    private final int width = 1200;
+    private final int height = 675;
 
-    JButton bNewGame,bLoad,bExit;
+    JButton bNewGame,bLoad,bExit, bPlay;
     JTextField tName;
-
+    JCheckBox difficulty_hard, difficulty_normal,difficulty_easy;
     JPanel pMainPage, pNewGame;
 
 
@@ -51,12 +52,37 @@ public class GUI extends JFrame implements ActionListener {
         pNewGame = new JPanel();
         pNewGame.setBounds(0,0,width,height);
 
-        tName = new JTextField();
-        tName.setBounds(50,50,100,200);
-        tName.setToolTipText("Podaj współczynnik A");
-        pNewGame.add(tName);
-        okno.add(pNewGame);
+        JLabel lName = new JLabel("Podaj nazwę Wirusa");
+        lName.setBounds((width/2)-120,120,300,60);
+        lName.setFont(new Font("SansSerif",Font.BOLD,24));
 
+        tName = new JTextField();
+        tName.setBounds((width/2)-100,(height/3)-30,200,60);
+        tName.setFont(new Font("SansSerif",Font.BOLD,18));
+
+        difficulty_hard = new JCheckBox("Trudny");
+        difficulty_hard.setBounds((width/2) - 175,(height/2)-20,150,20);
+        difficulty_hard.addActionListener(this);
+
+        difficulty_normal = new JCheckBox("Normalny");
+        difficulty_normal.setBounds((width/2) - 35,(height/2)-20,150,20);
+        difficulty_normal.addActionListener(this);
+
+        difficulty_easy = new JCheckBox("Łatwy");
+        difficulty_easy.setBounds((width/2) + 115,(height/2)-20,150,20);
+        difficulty_easy.addActionListener(this);
+
+        bPlay = new JButton("Play");
+        bPlay.setBounds((width/2)-50,(height/2)+50,100,50);
+        bPlay.addActionListener(this);
+
+        pNewGame.add(difficulty_hard);
+        pNewGame.add(difficulty_normal);
+        pNewGame.add(difficulty_easy);
+        pNewGame.add(tName);
+        pNewGame.add(lName);
+        pNewGame.add(bPlay);
+        okno.add(pNewGame);
     }
 
 
@@ -70,8 +96,10 @@ public class GUI extends JFrame implements ActionListener {
             okno.repaint();
             NewGame();
 
-        }
-        else if (zrodlo == bExit) {
+        } else if (zrodlo == bPlay) {
+            World.wirus = new Virus(tName.getText());
+
+        } else if (zrodlo == bExit) {
             okno.dispose();
         }
     }

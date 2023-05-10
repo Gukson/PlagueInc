@@ -5,5 +5,11 @@ public class Virus {
     public float cheanse4death;
     public float cheanse4infection;
 
+    public int difficulty;
+
+    public Virus(String Name){
+        this.virus_name = Name;
+    }
+
 
 }
