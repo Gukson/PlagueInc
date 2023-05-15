@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Configurator {
-    private ArrayList<Country> countries = new ArrayList<>();
+    public static ArrayList<Country> countries = new ArrayList<>();
 
     public Configurator(){
         readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");

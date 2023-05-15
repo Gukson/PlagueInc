@@ -1,5 +1,5 @@
 public class World {
-    public int time;
+    public int day;
     public static int population;
     public int infected_population;
     public int dead_populati9on;
@@ -11,6 +11,17 @@ public class World {
     }
     public static int getPopulation(){
         return population;
+    }
+
+    public void Game(){
+        day = 1;
+        infected_population = 1;
+        dead_populati9on = 0;
+        while(true){
+
+
+            day++;
+        }
     }
 
 }
