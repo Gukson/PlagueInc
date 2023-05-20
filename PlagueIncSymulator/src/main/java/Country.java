@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Country {
     public boolean infected = false;
@@ -6,19 +6,23 @@ public class Country {
     private int population;
     private float temperature;
     private String  climate;
-    private ArrayList<Country> neightboors;
+    private String neighbours;
 
 
-    public Country(String name, int population, double avgTemp, String climate) {
+    public Country(String name, int population, double avgTemp, String climate, String[] neighbour) {
         this.Country_name = name;
         this.population = population;
         this.temperature = (float) avgTemp;
         this.climate = climate;
+        this.neighbours = Arrays.toString(neighbour);
     }
     public int getPopulation(){
         return population;
     }
     public String getName(){
         return Country_name;
+    }
+    public String getNeighbours(){
+        return neighbours;
     }
 }

@@ -60,17 +60,25 @@ public class GUI extends JFrame implements ActionListener {
         tName.setBounds((width/2)-100,(height/3)-30,200,60);
         tName.setFont(new Font("SansSerif",Font.BOLD,18));
 
-        difficulty_hard = new JCheckBox("Trudny");
-        difficulty_hard.setBounds((width/2) - 175,(height/2)-20,150,20);
+
+        // Zmieniam zeby mozna bylo wybrac opcje tylko hard normal albo easy
+        ButtonGroup difficultyGroup = new ButtonGroup();
+
+        JRadioButton difficulty_hard = new JRadioButton("Trudny");
+        difficulty_hard.setBounds((width/2) - 175, (height/2)-20, 150, 20);
+        difficultyGroup.add(difficulty_hard);
         difficulty_hard.addActionListener(this);
 
-        difficulty_normal = new JCheckBox("Normalny");
-        difficulty_normal.setBounds((width/2) - 35,(height/2)-20,150,20);
+        JRadioButton difficulty_normal = new JRadioButton("Normalny");
+        difficulty_normal.setBounds((width/2) - 35, (height/2)-20, 150, 20);
+        difficultyGroup.add(difficulty_normal);
         difficulty_normal.addActionListener(this);
 
-        difficulty_easy = new JCheckBox("Łatwy");
-        difficulty_easy.setBounds((width/2) + 115,(height/2)-20,150,20);
+        JRadioButton difficulty_easy = new JRadioButton("Łatwy");
+        difficulty_easy.setBounds((width/2) + 115, (height/2)-20, 150, 20);
+        difficultyGroup.add(difficulty_easy);
         difficulty_easy.addActionListener(this);
+
 
         bPlay = new JButton("Play");
         bPlay.setBounds((width/2)-50,(height/2)+50,100,50);

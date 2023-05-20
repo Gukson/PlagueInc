@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Configurator {
@@ -8,7 +9,6 @@ public class Configurator {
 
     public Configurator(){
         readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");
-        System.out.println("XD");
         int population = calculateWorldPopulation();
         World.setPopulation(population);
     }
@@ -20,14 +20,16 @@ public class Configurator {
                 if (line.startsWith("KRAJ")) {
                     continue;
                 }
+
                 String[] fields = line.split(";");
                 String name = fields[0];
+                String[] neighbours = fields[4].split(",");
                 String populationStr = fields[1].replaceAll("\\s+", "");
                 int population = Integer.parseInt(populationStr);
                 String avgTempStr = fields[2].replaceAll("[^\\d.-]+", "");
                 double avgTemp = Double.parseDouble(avgTempStr);
                 String climate = fields[3];
-                countries.add(new Country(name, population, avgTemp, climate));
+                countries.add(new Country(name, population, avgTemp, climate,neighbours));
             }
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -47,9 +49,8 @@ public class Configurator {
         int worldPopulation = World.getPopulation();
         System.out.println("WORLD POPULATION " + worldPopulation);
         for (Country country : gui.countries){
-            System.out.println(country.getName() + "  POPULATION: " + country.getPopulation());
+            System.out.println(country.getName() + "  POPULATION: " + country.getPopulation() + "  NEIGHBOURS : " + country.getNeighbours());
         }
-        System.out.println("Hello");
     }
 
 }
