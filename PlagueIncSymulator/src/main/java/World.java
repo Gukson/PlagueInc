@@ -36,7 +36,7 @@ public class World {
     }
 
     //Główna funckja odpowiedzialna za grę
-    public void Game(){
+    private void Game(){
         day = 1;
         infectedPopulation = 1;
         deadPopulation = 0;
@@ -48,6 +48,7 @@ public class World {
         }
     }
 
+    //Funkcja odpowiedzialna za proces zrażania w danym kraju
     private void infectionProcess(Country c){
         int newInfectedPopulation = (int) (Math.ceil(c.getHealthyPopulation() * wirus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
