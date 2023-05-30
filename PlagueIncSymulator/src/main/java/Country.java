@@ -1,28 +1,66 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Country {
-    public boolean infected = false;
-    private String Country_name;
-    private int population;
+    private boolean infected = false;
+    private final String CountryName;
     private float temperature;
     private String  climate;
-    private String neighbours;
+    private final String neighbours;
+
+    private final int population;
+    private int healthyPopulation;
+    private int infectedPopulation;
+    private int deadPopulation;
 
 
     public Country(String name, int population, double avgTemp, String climate, String[] neighbour) {
-        this.Country_name = name;
+        this.CountryName = name;
         this.population = population;
         this.temperature = (float) avgTemp;
         this.climate = climate;
         this.neighbours = Arrays.toString(neighbour);
+        this.healthyPopulation = population;
     }
     public int getPopulation(){
         return population;
     }
+
+    public int getHealthyPopulation(){return healthyPopulation;};
+    public int getInfectedPopulation(){return infectedPopulation;}
+    public int getDeadPopulation(){return deadPopulation;}
+
     public String getName(){
-        return Country_name;
+        return CountryName;
     }
     public String getNeighbours(){
         return neighbours;
     }
+
+    public void setInfectedPopulation(int i){
+        infectedPopulation = i;
+        if(infectedPopulation > population) infectedPopulation = population;
+        healthyPopulation = population - infectedPopulation;
+    }
+    public void addInfectedPopulation(int i){
+        infectedPopulation += i;
+        if(infectedPopulation > population) infectedPopulation = population;
+        healthyPopulation = population - infectedPopulation;
+    }
+
+    public void setInfectedStatus(){infected=true;}
+    public boolean getInfectedStatus(){return infected;}
+
+    public void infectYourNeighbor(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(population - 1 + 1) + 1;
+        if(randomNumber <= infectedPopulation){
+            randomNumber = random.nextInt( neighbours.length() + 1);
+            //zaraź któregoś z niezarażonych sąsiadów
+        }
+
+
+    }
+
+
 }
