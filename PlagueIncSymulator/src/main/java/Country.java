@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class Country {
@@ -6,7 +5,7 @@ public class Country {
     private final String CountryName;
     private float temperature;
     private String  climate;
-    private final String neighbours;
+    private final String[] neighbours;
 
     private final int population;
     private int healthyPopulation;
@@ -19,7 +18,7 @@ public class Country {
         this.population = population;
         this.temperature = (float) avgTemp;
         this.climate = climate;
-        this.neighbours = Arrays.toString(neighbour);
+        this.neighbours = neighbour;
         this.healthyPopulation = population;
     }
     public int getPopulation(){
@@ -33,7 +32,7 @@ public class Country {
     public String getName(){
         return CountryName;
     }
-    public String getNeighbours(){
+    public String[] getNeighbours(){
         return neighbours;
     }
 
@@ -54,8 +53,9 @@ public class Country {
     public void infectYourNeighbor(){
         Random random = new Random();
         int randomNumber = random.nextInt(population - 1 + 1) + 1;
+        System.out.println();
         if(randomNumber <= infectedPopulation){
-            randomNumber = random.nextInt( neighbours.length() + 1);
+//            randomNumber = random.nextInt( neighbours.length() + 1);
             //zaraź któregoś z niezarażonych sąsiadów
         }
 
