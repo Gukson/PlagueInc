@@ -1,12 +1,10 @@
-import java.util.Arrays;
-
 public class Country {
     public boolean infected = false;
     private String Country_name;
     private int population;
     private float temperature;
     private String  climate;
-    private String neighbours;
+    private String[] neighbours;
 
 
     public Country(String name, int population, double avgTemp, String climate, String[] neighbour) {
@@ -14,7 +12,7 @@ public class Country {
         this.population = population;
         this.temperature = (float) avgTemp;
         this.climate = climate;
-        this.neighbours = Arrays.toString(neighbour);
+        this.neighbours = neighbour;
     }
     public int getPopulation(){
         return population;
@@ -22,7 +20,7 @@ public class Country {
     public String getName(){
         return Country_name;
     }
-    public String getNeighbours(){
+    public String[] getNeighbours(){
         return neighbours;
     }
 }

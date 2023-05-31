@@ -50,6 +50,8 @@ public class Configurator {
         System.out.println("WORLD POPULATION " + worldPopulation);
         for (Country country : gui.countries){
             System.out.println(country.getName() + "  POPULATION: " + country.getPopulation() + "  NEIGHBOURS : " + country.getNeighbours());
+            String [] Arr = country.getNeighbours();
+            System.out.println(Arr[0]);
         }
     }
 
