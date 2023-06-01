@@ -17,6 +17,7 @@ public class GUI extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         GUI appMenu = new GUI();
+        Configurator.startConfigurator();
     }
 
     public GUI(){
@@ -93,7 +94,6 @@ public class GUI extends JFrame implements ActionListener {
         okno.add(pNewGame);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object zrodlo = e.getSource();
@@ -105,7 +105,12 @@ public class GUI extends JFrame implements ActionListener {
             NewGame();
 
         } else if (zrodlo == bPlay) {
-            World.wirus = new Virus(tName.getText());
+            try {
+                World.StartGame("Polska",tName.getText());
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+
 
         } else if (zrodlo == bExit) {
             okno.dispose();

@@ -44,7 +44,7 @@ public class Configurator {
         return population;
     }
 
-    public static void main(String[] args) {
+    public static void startConfigurator() {
         Configurator gui = new Configurator();
         int worldPopulation = World.getPopulation();
         System.out.println("WORLD POPULATION " + worldPopulation);

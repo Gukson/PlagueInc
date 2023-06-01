@@ -25,7 +25,7 @@ public class Country {
         return population;
     }
 
-    public int getHealthyPopulation(){return healthyPopulation;};
+    public int getHealthyPopulation(){return healthyPopulation;}
     public int getInfectedPopulation(){return infectedPopulation;}
     public int getDeadPopulation(){return deadPopulation;}
 
@@ -55,11 +55,18 @@ public class Country {
         int randomNumber = random.nextInt(population - 1 + 1) + 1;
         System.out.println();
         if(randomNumber <= infectedPopulation){
-//            randomNumber = random.nextInt( neighbours.length() + 1);
+            randomNumber = random.nextInt( neighbours.length + 1);
+
             //zaraź któregoś z niezarażonych sąsiadów
         }
 
+    }
 
+    public void printInformations(){
+        System.out.println("Nazwa Kraju: "+ getName());
+        System.out.println("Populacja: "+ population);
+        System.out.println("Zarazeni: "+ infectedPopulation);
+        System.out.println();
     }
 
 

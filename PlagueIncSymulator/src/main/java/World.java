@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class World {
-    public int day;
+    public static int day;
     public static int population;
-    public int infectedPopulation;
-    public int deadPopulation;
+    public static int infectedPopulation;
+    public static int deadPopulation;
 
 
     public static Virus wirus;
 
-    private ArrayList<Country> infectedCountries;
-    private HashMap<String,Country> coutries;
+    private static ArrayList<Country> infectedCountries;
+    private static HashMap<String,Country> coutries;
 
     public static void setPopulation(int population){
         World.population = population;
@@ -21,7 +22,7 @@ public class World {
     }
 
     //Zaraża pierwszy wybrany kraj
-    public void StartGame(String startingCountry, String virusName){
+    public static void StartGame(String startingCountry, String virusName) throws InterruptedException {
         infectedCountries = new ArrayList<Country>();
         coutries = new HashMap<String,Country>();
         for(Country c : Configurator.countries) coutries.put(c.getName(),c);
@@ -36,24 +37,26 @@ public class World {
     }
 
     //Główna funckja odpowiedzialna za grę
-    private void Game(){
+    private static void Game() throws InterruptedException {
         day = 1;
         infectedPopulation = 1;
         deadPopulation = 0;
         while(true){
             for(Country c : infectedCountries){
                 infectionProcess(c);
+                c.printInformations();
             }
             day++;
+            System.out.println("Day: " + day);
+            Thread.sleep(1000);
         }
     }
 
     //Funkcja odpowiedzialna za proces zrażania w danym kraju
-    private void infectionProcess(Country c){
-        int newInfectedPopulation = (int) (Math.ceil(c.getHealthyPopulation() * wirus.cheanseForInfection)); //wylicza ilość nowych zarażonych
+    private static void infectionProcess(Country c){
+        int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * wirus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
         c.infectYourNeighbor();
-
 
     }
 

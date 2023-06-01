@@ -1,0 +1,56 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Configurator {
+  + Configurator(): 
+  - readInfoAboutCountries(String): void
+  - calculateWorldPopulation(): int
+  + main(String[]): void
+}
+class Country {
+  + Country(String, int, double, String, String[]): 
+  - deadPopulation: int
+  - population: int
+  - neighbours: String[]
+  - healthyPopulation: int
+  - infectedPopulation: int
+  + infectYourNeighbor(): void
+  + addInfectedPopulation(int): void
+  + setInfectedStatus(): void
+   name: String
+   healthyPopulation: int
+   neighbours: String[]
+   infectedPopulation: int
+   population: int
+   deadPopulation: int
+   infectedStatus: boolean
+}
+class GUI {
+  + GUI(): 
+  + actionPerformed(ActionEvent): void
+  + main(String[]): void
+  + MainPage(): void
+  + NewGame(): void
+}
+class Virus {
+  + Virus(String): 
+}
+class World {
+  + World(): 
+  + population: int
+  - infectionProcess(Country): void
+  + StartGame(String, String): void
+  - Game(): void
+   population: int
+}
+
+Configurator  -[#595959,dashed]->  Country      : "«create»"
+Configurator "1" *-[#595959,plain]-> "countries\n*" Country      
+GUI           -[#595959,dashed]->  Virus        : "«create»"
+World        "1" *-[#595959,plain]-> "infectedCountries\n*" Country      
+World         -[#595959,dashed]->  Virus        : "«create»"
+World        "1" *-[#595959,plain]-> "wirus\n1" Virus        
+@enduml
