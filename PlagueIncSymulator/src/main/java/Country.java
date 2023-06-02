@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Country {
@@ -47,7 +48,7 @@ public class Country {
         healthyPopulation = population - infectedPopulation;
     }
 
-    public void setInfectedStatus(){infected=true;}
+    public void setStatusInfected(){infected=true;}
     public boolean getInfectedStatus(){return infected;}
 
     public void infectYourNeighbor(){
@@ -55,11 +56,23 @@ public class Country {
         int randomNumber = random.nextInt(population - 1 + 1) + 1;
         System.out.println();
         if(randomNumber <= infectedPopulation){
-            randomNumber = random.nextInt( neighbours.length + 1);
-
-            //zaraź któregoś z niezarażonych sąsiadów
+            ArrayList<Country> notInfected = notInfectedNeighbours();
+            randomNumber = random.nextInt( notInfected.size() + 1);
+            Country newInfected = notInfected.get(randomNumber);
+            newInfected.setStatusInfected();
+            newInfected.setInfectedPopulation(1);
+            World.infectedCountries.add(newInfected);
         }
-
+    }
+    
+    //Funckja generuje Arraylistę nie zarażonych sąsiadów
+    private ArrayList<Country> notInfectedNeighbours(){
+        ArrayList<Country> notInfected = new ArrayList<Country>();
+        for(String c: neighbours){
+            Country tempCountry = World.coutriesMap.get(c);
+            if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
+        }
+        return notInfected;
     }
 
     public void printInformations(){

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class World {
     public static int day;
@@ -11,8 +10,8 @@ public class World {
 
     public static Virus wirus;
 
-    private static ArrayList<Country> infectedCountries;
-    private static HashMap<String,Country> coutries;
+    public static ArrayList<Country> infectedCountries;
+    public static HashMap<String,Country> coutriesMap;
 
     public static void setPopulation(int population){
         World.population = population;
@@ -24,13 +23,13 @@ public class World {
     //Zaraża pierwszy wybrany kraj
     public static void StartGame(String startingCountry, String virusName) throws InterruptedException {
         infectedCountries = new ArrayList<Country>();
-        coutries = new HashMap<String,Country>();
-        for(Country c : Configurator.countries) coutries.put(c.getName(),c);
+        coutriesMap = new HashMap<String,Country>();
+        for(Country c : Configurator.countries) coutriesMap.put(c.getName(),c);
 
         wirus = new Virus(virusName);
 
-        Country firstInfected = coutries.get(startingCountry);
-        firstInfected.setInfectedStatus();
+        Country firstInfected = coutriesMap.get(startingCountry);
+        firstInfected.setStatusInfected();
         firstInfected.setInfectedPopulation(1);
         infectedCountries.add(firstInfected);
         Game();
