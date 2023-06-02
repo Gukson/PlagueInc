@@ -23,7 +23,7 @@ public class Configurator {
 
                 String[] fields = line.split(";");
                 String name = fields[0];
-                String[] neighbours = fields[4].split(",");
+                String[] neighbours = fields[4].split(", ");
                 String populationStr = fields[1].replaceAll("\\s+", "");
                 int population = Integer.parseInt(populationStr);
                 String avgTempStr = fields[2].replaceAll("[^\\d.-]+", "");

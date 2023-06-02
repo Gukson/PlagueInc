@@ -106,7 +106,7 @@ public class GUI extends JFrame implements ActionListener {
 
         } else if (zrodlo == bPlay) {
             try {
-                World.StartGame("Polska",tName.getText());
+                World.StartGame("Niemcy",tName.getText());
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }

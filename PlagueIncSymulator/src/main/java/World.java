@@ -41,13 +41,14 @@ public class World {
         infectedPopulation = 1;
         deadPopulation = 0;
         while(true){
-            for(Country c : infectedCountries){
+            for(int x = 0; x< infectedCountries.size(); x++){
+                Country c = infectedCountries.get(x);
                 infectionProcess(c);
                 c.printInformations();
             }
             day++;
             System.out.println("Day: " + day);
-            Thread.sleep(1000);
+            Thread.sleep(10);
         }
     }
 

@@ -57,19 +57,23 @@ public class Country {
         System.out.println();
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
-            randomNumber = random.nextInt( notInfected.size() + 1);
-            Country newInfected = notInfected.get(randomNumber);
-            newInfected.setStatusInfected();
-            newInfected.setInfectedPopulation(1);
-            World.infectedCountries.add(newInfected);
+            if(notInfected.size() != 0){
+                randomNumber = random.nextInt( notInfected.size());
+                Country newInfected = notInfected.get(randomNumber);
+                newInfected.setStatusInfected();
+                newInfected.setInfectedPopulation(1);
+                World.infectedCountries.add(newInfected);
+            }
         }
     }
-    
+
     //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
+        System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
+            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
