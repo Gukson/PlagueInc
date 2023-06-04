@@ -2,12 +2,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Configurator {
     public static ArrayList<Country> countries = new ArrayList<>();
 
     public Configurator(){
+        readInfoAboutFlights("PlagueIncSymulator/Data/flights.csv");
+        readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
         readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");
         int population = calculateWorldPopulation();
         World.setPopulation(population);
@@ -42,6 +45,39 @@ public class Configurator {
             population += country.getPopulation();
         }
         return population;
+    }
+    private void readInfoAboutFlights(String filename){
+        World.flightsMap = new HashMap<String,String >();
+        try{
+            Scanner scanner = new Scanner(new File(filename));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Kraj")) {
+                    continue;
+                }
+                String[] fields = line.split(";");
+                World.flightsMap.put(fields[0],fields[1]);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void readInfoAboutSeaCruise(String filename){
+        World.seaCruiseMap = new HashMap<String,String >();
+        try{
+            Scanner scanner = new Scanner(new File(filename));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Kraj")) {
+                    continue;
+                }
+                String[] fields = line.split(";");
+                World.seaCruiseMap.put(fields[0],fields[1]);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void startConfigurator() {

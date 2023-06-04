@@ -12,6 +12,8 @@ public class World {
 
     public static ArrayList<Country> infectedCountries;
     public static HashMap<String,Country> coutriesMap;
+    public static HashMap<String, String> flightsMap;
+    public static HashMap<String, String> seaCruiseMap;
 
     public static void setPopulation(int population){
         World.population = population;
