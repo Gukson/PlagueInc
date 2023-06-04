@@ -63,6 +63,7 @@ public class Country {
                 newInfected.setStatusInfected();
                 newInfected.setInfectedPopulation(1);
                 World.infectedCountries.add(newInfected);
+                World.virus.addPoint();
             }
         }
     }

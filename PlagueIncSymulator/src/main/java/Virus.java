@@ -4,6 +4,7 @@ public class Virus {
 
     public double cheanseForDeath;
     public double cheanseForInfection;
+    public int virusPoints;
 
     public int difficulty;
 
@@ -11,7 +12,11 @@ public class Virus {
         this.virus_name = Name;
         cheanseForDeath = 0;
         cheanseForInfection = 0.1;
+        virusPoints = 0;
     }
+
+    public void addPoint(){virusPoints++;}
+
 
 
 

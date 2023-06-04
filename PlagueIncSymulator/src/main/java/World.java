@@ -8,7 +8,7 @@ public class World {
     public static int deadPopulation;
 
 
-    public static Virus wirus;
+    public static Virus virus;
 
     public static ArrayList<Country> infectedCountries;
     public static HashMap<String,Country> coutriesMap;
@@ -26,7 +26,7 @@ public class World {
         coutriesMap = new HashMap<String,Country>();
         for(Country c : Configurator.countries) coutriesMap.put(c.getName(),c);
 
-        wirus = new Virus(virusName);
+        virus = new Virus(virusName);
 
         Country firstInfected = coutriesMap.get(startingCountry);
         firstInfected.setStatusInfected();
@@ -46,6 +46,7 @@ public class World {
                 infectionProcess(c);
                 c.printInformations();
             }
+            if(day%30 == 0)virus.addPoint();
             day++;
             System.out.println("Day: " + day);
             Thread.sleep(10);
@@ -54,7 +55,7 @@ public class World {
 
     //Funkcja odpowiedzialna za proces zrażania w danym kraju
     private static void infectionProcess(Country c){
-        int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * wirus.cheanseForInfection)); //wylicza ilość nowych zarażonych
+        int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
         c.infectYourNeighbor();
 
