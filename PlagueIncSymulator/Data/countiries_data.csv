@@ -7,7 +7,7 @@ Arabia Saudyjska;34218169;24.7;suchy i pustynny;Irak, Jordania, Kuwejt, Oman, Ka
 Argentyna;44938712;14.5;umiarkowany;Boliwia, Brazylia, Chile, Paragwaj, Urugwaj
 Australia;25203198;22.4;suchy i pustynny;None
 Austria;8902600;7.5;umiarkowany;Czechy, Niemcy, Wegry, Liechtenstein, Slowacja, Slowenia, Szwajcaria
-Bialorus;9417849;5.5;umiarkowany;lotwa, Litwa, Polska, Rosja, Ukraina
+Bialorus;9417849;5.5;umiarkowany;Lotwa, Litwa, Polska, Rosja, Ukraina
 Belgia;11538079;9.9;umiarkowany;Francja, Luksemburg, Niemcy, Holandia
 Boliwia;11513100;15.1;umiarkowany;Argentyna, Brazylia, Chile, Paragwaj, Peru
 Botswana;2302878;22.7;suchy;Namibia, Poludniowa Afryka, Zimbabwe
@@ -19,11 +19,11 @@ Chorwacja;4105267;12.5;umiarkowany;Bosnia i Hercegowina, Serbia, Slowenia
 Cypr;1189265;20.5;srodziemnomorski;None
 Czarnogora;622359;15.0;umiarkowany;Albania, Bosnia i Hercegowina, Chorwacja, Serbia
 Czechy;10610055;7.0;umiarkowany;Austria, Niemcy, Polska, Slowacja
-Dania;5806081;8.5;umiarkowany;None
+Dania;5806081;8.5;umiarkowany;Niemcy, Szwecja
 Dominikana;10738958;26.6;wilgotny;Haiti
 Egipt;100388073;22.0;suchy i pustynny;Izrael, Libia, Sudan
 Ekwador;17370000;23.2;wilgotny;Kolumbia, Peru
-Estonia;1325648;5.5;umiarkowany;lotwa, Rosja
+Estonia;1325648;5.5;umiarkowany;Lotwa, Rosja
 Etiopia;112078730;22.0;wilgotny;Dzibuti, Erytrea, Kenia, Somalia, Sudan Poludniowy, Sudan
 Filipiny;108116615;26.6;wilgotny;Indonezja, Malezja
 Finlandia;5520314;3.2;umiarkowany;Norwegia, Rosja, Szwecja
@@ -32,10 +32,10 @@ Grecja;10 741 165;18.1;srodziemnomorski;Albania, Bulgaria, Macedonia Polnocna, T
 Gruzja;3 716 858;12.5;Kontynentalny;Armenia, Azerbejdzan, Rosja, Turcja
 Hiszpania;47 367 000;18.5;srodziemnomorski;Andora, Francja, Gibraltar, Portugalia, Maroko
 Holandia;17 411 692;9.6;Morski;Belgia, Niemcy
-Indie;1 366 417 754;25.3;Tropikalny;Bangladesz, Bhutan, Chiny, , Nepal, Pakistan
+Indie;1 366 417 754;25.3;Tropikalny;Bangladesz, Bhutan, Chiny, Nepal, Pakistan
 Indonezja;276 361 783;26.7;Tropikalny;Malezja,PapuaoNowa Gwinea, Timor Wschodni
 Iran;83 992 949;16.7;Pustynny;Afganistan, Armenia, Azerbejdzan, Irak, Pakistan, Turcja, Turkmenistan
-Irlandia;4 934 925;9.4;Morski;None
+Irlandia;4937786;9.3;Morski klimat umiarkowany;Wielka Brytania
 Islandia;343 518;5.5;Arktyczny;None
 Izrael;8 884 000;20.9;Pustynny;Egipt, Jordania, Liban, Syria
 Japonia;126 150 000;16.6;Morski;None
@@ -51,15 +51,15 @@ Korea Polnocna;25 727 267;4.8;Kontynentalny;Korea Poludniowa, Chiny, Rosja
 Kosowo;1 814 703;12.4;Kontynentalny;Albania, Czarnogora, Macedonia Polnocna, Serbia
 Kuba;11 333 483;25.5;Zwrotnikowy;None
 Kuwejt;4 328 550;28.7;Pustynny;Arabia Saudyjska, Irak
-Laos;7 123 205;24.6;Tropikalny;Kambodza, Chiny, , Tajlandia, Wietnam
+Laos;7 123 205;24.6;Tropikalny;Kambodza, Chiny, Tajlandia, Wietnam
 Lesotho;2 142 249;11.8;Klimat umiarkowany;Republika Poludniowej Afryki
 Liban;6 855 713;20.6;srodziemnomorski;Izrael, Syria
 Liberia;5057677;26.2;Tropikalny;Wybrzeze Kosci Sloniowej, Gwinea, Sierra Leone
 Libia;6871292;24.1;Pustynny;Algieria, Czad, Egipt, Niger, Sudan, Tunezja
-Litwa;2722289;6.8;Umiarkowany;Bialorus, lotwa, Polska, Rosja
+Litwa;2722289;6.8;Umiarkowany;Bialorus, Lotwa, Polska, Rosja
 Luksemburg;626108;9.8;Umiarkowany;Belgia, Francja, Niemcy
 Lotwa;1911800;6.2;Umiarkowany;Bialorus, Estonia, Litwa, Rosja
-Macedonia Polnocna;2083160;13.3;Kontynentalny;Polnocna: Albania, Bulgaria, Grecja, Kosowo, Serbia
+Macedonia Polnocna;2083160;13.3;Kontynentalny;Albania, Bulgaria, Grecja, Kosowo, Serbia
 Madagaskar;29285013;22.2;Tropikalny;None
 Malawi;19129952;22.7;Tropikalny;Mozambik, Tanzania, Zambia
 Malezja;32722760;26.3;Zwrotnikowy;Brunei, Indonezja, Tajlandia
@@ -85,12 +85,12 @@ Peru;33 359 418;18.0;Tropikalny;Boliwia, Brazylia, Chile, Kolumbia, Ekwador
 Polska;37 980 713;7.8;Kontynentalny;Bialorus, Czechy, Niemcy, Litwa, Rosja, Slowacja, Ukraina
 Portugalia;10 295 000;17.0;srodziemnomorski;Hiszpania
 Republika Poludniowej Afryki;59 308 690;17.8;Podzwrotnikowy;Botswana, Lesotho, Mozambik, Namibia, Suazi, Zimbabwe
-Rosja;144 478 050;o5.2;Kontynentalny;Azerbejdzan, Bialorus, Chiny, Estonia, Finlandia, Gruzja, Kazachstan, Korea Polnocna, lotwa, Litwa, Mongolia, Norwegia, Polska, Ukraina
+Rosja;144 478 050;o5.2;Kontynentalny;Azerbejdzan, Bialorus, Chiny, Estonia, Finlandia, Gruzja, Kazachstan, Korea Polnocna, Lotwa, Litwa, Mongolia, Norwegia, Polska, Ukraina
 Rumunia;19 506 114;11.0;Kontynentalny;Bulgaria, Moldawia, Serbia, Ukraina, Wegry
 Rwanda;12 952 218;19.0;Zwrotnikowy;Burundi,  Tanzania, Uganda
 Salwador;6 581 940;25.0;Tropikalny;Gwatemala, Honduras
 Senegal;16 296 364;27.0;Saharyjski;Gambia, Gwinea, Gwinea-Bissau, Mauretania, Mali
-Serbia;8 737 371;11.8;Kontynentalny; Albania, Bosnia i Hercegowina, Bulgaria, Chorwacja, Kosowo, Macedonia Polnocna, Moldawia, Rumunia, Wegry
+Serbia;8 737 371;11.8;Kontynentalny;Albania, Bosnia i Hercegowina, Bulgaria, Chorwacja, Kosowo, Macedonia Polnocna, Moldawia, Rumunia, Wegry
 Sierra Leone;8 105 313;27.0;Zwrotnikowy;Gwinea, Liberia
 Singapur;5 702 000;27.7;Zwrotnikowy;None
 Slowacja;5 450 421;9.0;Kontynentalny;Austria, Czechy, Polska, Ukraina, Wegry
@@ -102,14 +102,14 @@ Surinam;587 000;27.0;Tropikalny;Brazylia, Gujana, Gujana Francuska
 Syria;18 284 407;22.0;srodziemnomorski;Irak, Izrael, Jordania, Liban, Turcja
 Szwajcaria;8 632 200;7.2;Kontynentalny;Austria, Francja, Liechtenstein, Niemcy, Wlochy
 Szwecja;10 379 295;3.0;Kontynentalny;Finlandia, Norwegia
-Tadzykistan;9537645;8.6;Kontynentalny;Afganistan,  Kirgistan, Uzbekistan
+Tadzykistan;9537645;8.6;Kontynentalny;Afganistan, Kirgistan, Uzbekistan
 Tajlandia;69799978;27.1;Tropikalny monsun;Kambodza, Laos, Malezja, 
 Tanzania;59734213;22.9;Tropikalny;Burundi, Dzibuti, Kenia, Malawi, , Mozambik, Rwanda, Uganda, Zambia
 Timor Wschodni;1367250;26.2;Tropikalny;Indonezja
 Togo;8278724;27.7;Tropikalny;Benin, Burkina Faso, Ghana
 Tunezja;11818618;19.2;srodziemnomorski;Algieria, Libia
 Turcja;83154997;13.7;srodziemnomorski;Armenia, Bulgaria, Grecja, Iran, Irak, Syria
-Turkmenistan;5942089;15.8;Kontynentalny;Afghanistan, Iran, Kazakhstan, Uzbekistan
+Turkmenistan;5942089;15.8;Kontynentalny;Afganistan, Iran, Kazachstan, Uzbekistan
 Uganda;47010100;23.5;Tropikalny; Kenia, Rwanda, Sudan, Tanzania
 Ukraina;43493822;7.7;Kontynentalny;Bialorus, Czechy, Moldawia, Polska, Rosja, Rumunia, Slowacja, Wegry
 Urugwaj;3469551;17.1;Morski;Argentyna, Brazylia
@@ -123,3 +123,44 @@ Wybrzeze Kosci Sloniowej;28252505;27.1;Tropikalny;Burkina Faso, Ghana, Guinea, L
 Zambia;18383955;21.8;Tropikalny;Angola, Malawi, Mozambik, Namibia, Tanzania, Zimbabwe
 Zimbabwe;14862924;21.0;Tropikalny;Botswana, Mozambik, RPA, Zambia
 Portoryko;3193694;26.9;Tropikalny;None
+Albania;2870324;24.0;Srodziemnomorski;Czarnogora, Grecja, Macedonia Polnocna, Serbia
+Bosnia i Hercegowina;3516822;19.5;Kontynentalny;Chorwacja, Serbia, Czarnogora
+Algieria;40400000;28.3;Pustynny;Tunezja, Libia, Niger, Mali, Mauretania, Maroko, Mauritius
+Armenia;2968000;12.1;Kontynentalny;Azerbejdzan, Gruzja, Iran, Turcja
+Kirgistan;6149000;14.4;Kontynentalny;Kazachstan, Uzbekistan, Tadzykistan, Chiny
+Sahara Zachodnia;582463;29.7;Pustynny;Maroko, Mauretania, Algieria
+Mauretania;4649660;28.5;Pustynny;Algieria, Sahara Zachodnia, Mali, Senegal
+Bhutan;771608;15.0;Górski;Chiny, Indie
+Irak;40150200;23.4;Pustynny;Kuwejt, Arabia Saudyjska, Jordania, Syria, Turcja, Iran
+Chiny;1403500365;8.5;Różnorodny;Afganistan, Bhutan, Myanmar, Indie, Kazachstan, Kirgistan, Laos, Mongolia, Nepal, Korea Polnocna, Pakistan, Rosja, Tadzykistan, Wietnam
+Bangladesz;166303498;26.8;Tropikalny;Indie, Myanmar
+Czad;16877000;27.7;Saharyjski;Libia, Sudan, Republika Srodkowoafrykanska, Kamerun, Nigeria, Niger
+Myanmar;54704000;25.0;Tropikalny;Bangladesz, Chiny, Indie, Laos, Tajlandia
+Burkina Faso;20870000;28.3;Sawanna;Mali, Niger, Benin, Togo, Ghana, Wybrzeże Kości Słoniowej, Mali
+Gwinea;12414318;26.0;Tropikalny;Senegal, Gwinea-Bissau, Sierra Leone, Liberia, Wybrzeze Kosci Sloniowej, Mali, Guinea Rownikowa
+Gwinea-Bissau;1890900;26.6;Tropikalny;Senegal, Gwinea, Gwinea Równikowa
+Gwinea Rownikowa;1400000;25.4;Tropikalny;Kamerun, Gabon, Republika Środkowoafrykańska, Gwinea-Bissau, Ekwador
+Benin;12123000;27.5;Sawanna;Togo, Nigeria, Niger, Burkina Faso, Wybrzeze Kosci Sloniowej
+Gambia;2100568;27.0;Tropikalny;Senegal
+Katar;2832067;30.0;Pustynny;Arabia Saudyjska, Zjednoczone Emiraty Arabskie
+Republika Środkowoafrykańska;4844927;24.6;Sawanna;Sudan Południowy, Sudan, Czad, Kamerun, Kongo, Demokratyczna Republika Konga
+Zjednoczone Emiraty Arabskie;9890400;28.8;Pustynny;Oman, Arabia Saudyjska, Katar
+Jemen;28120000;27.0;Pustynny;Arabia Saudyjska, Oman
+Ghana;30280811;27.5;Sawanna;Wybrzeże Kości Słoniowej, Burkina Faso, Togo
+Erytrea;5647168;26.4;Pustynny;Sudan, Etiopia, Dżibuti
+Beliz;408487;26.0;Tropikalny;Gwatemala, Meksyk
+Belize;398050;27.0;Tropikalny;Gwatemala, Meksyk
+Gwatemala;16913503;22.0;Tropikalny;Meksyk, Belize, Honduras, Salwador
+Honduras;9746117;25.6;Tropikalny;Gwatemala, Salwador, Nikaragua
+Nikaragua;6284757;26.5;Tropikalny;Honduras, Kostaryka
+Kostaryka;4953199;24.5;Tropikalny;Nikaragua, Panama
+Gujana;782225;27.0;Tropikalny;Surinam, Brazylia, Wenezuela
+Gujana Francuska;294071;26.0;Tropikalny;Brazylia, Surinam
+Liechtenstein;38128;8.5;Kontynentalny;Austria, Szwajcaria
+Wlochy;60461826;13.7;Śródziemnomorski;Francja, Szwajcaria, Austria, Slowenia
+Andora;77072;13.5;Górzysty;Francja, Hiszpania
+Monako;39186;16.8;Śródziemnomorski;Francja
+Gibraltar;33701;18.9;Śródziemnomorski;Hiszpania
+Moldawia;2653000;10.5;Kontynentalny;Rumunia, Ukraina
+Azerbejdzan;10139175;13.5;Kontynentalny;Gruzja, Armenia, Iran, Turcja, Rosja
+Libia;6871287;26.2;Pustynny;Algieria, Tunezja, Niger, Czad, Sudan, Egipt
