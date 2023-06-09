@@ -24,7 +24,7 @@ Dominikana;10738958;26.6;wilgotny;Haiti
 Egipt;100388073;22.0;suchy i pustynny;Izrael, Libia, Sudan
 Ekwador;17370000;23.2;wilgotny;Kolumbia, Peru
 Estonia;1325648;5.5;umiarkowany;Lotwa, Rosja
-Etiopia;112078730;22.0;wilgotny;Dzibuti, Erytrea, Kenia, Somalia, Sudan Poludniowy, Sudan
+Etiopia;112078730;22.0;wilgotny;Dzibuti, Erytrea, Kenia, Somalia, Sudan, Poludniowy Sudan
 Filipiny;108116615;26.6;wilgotny;Indonezja, Malezja
 Finlandia;5520314;3.2;umiarkowany;Norwegia, Rosja, Szwecja
 Francja;66 987 000;12.8;Oceaniczny;Andora, Belgia, Luksemburg, Monako, Niemcy, Hiszpania, Szwajcaria, Wlochy
@@ -138,7 +138,7 @@ Czad;16877000;27.7;Saharyjski;Libia, Sudan, Republika Srodkowoafrykanska, Kameru
 Myanmar;54704000;25.0;Tropikalny;Bangladesz, Chiny, Indie, Laos, Tajlandia
 Burkina Faso;20870000;28.3;Sawanna;Mali, Niger, Benin, Togo, Ghana, Wybrzeze Kosci Sloniowej, Mali
 Gwinea;12414318;26.0;Tropikalny;Senegal, Gwinea-Bissau, Sierra Leone, Liberia, Wybrzeze Kosci Sloniowej, Mali, Gwinea Rownikowa
-Gwinea-Bissau;1890900;26.6;Tropikalny;Senegal, Gwinea, Gwinea Równikowa
+Gwinea-Bissau;1890900;26.6;Tropikalny;Senegal, Gwinea, Gwinea Rownikowa
 Gwinea Rownikowa;1400000;25.4;Tropikalny;Kamerun, Gabon, Republika Srodkowoafrykanska, Gwinea-Bissau, Ekwador
 Benin;12123000;27.5;Sawanna;Togo, Nigeria, Niger, Burkina Faso, Wybrzeze Kosci Sloniowej
 Gambia;2100568;27.0;Tropikalny;Senegal
@@ -164,4 +164,4 @@ Gibraltar;33701;18.9;Śródziemnomorski;Hiszpania
 Moldawia;2653000;10.5;Kontynentalny;Rumunia, Ukraina
 Azerbejdzan;10139175;13.5;Kontynentalny;Gruzja, Armenia, Iran, Turcja, Rosja
 Libia;6871287;26.2;Pustynny;Algieria, Tunezja, Niger, Czad, Sudan, Egipt
-Poludniowy Sudan; 13510000; 31.2; Sudan, Etiopia, Uganda, Kenia, Republika Srodkowoafrykanska, Demokratyczna Republika Konga, Wybrzeze Kostaryki
+Poludniowy Sudan; 13510000; 31.2;Sudan, Etiopia, Uganda, Kenia, Republika Srodkowoafrykanska, Demokratyczna Republika Konga, Wybrzeze Kostaryki
