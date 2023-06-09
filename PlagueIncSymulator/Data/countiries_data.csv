@@ -72,7 +72,7 @@ Mozambik;30066648;25.4;Tropikalny;Malawi, RPA, Suazi, Tanzania, Zambia, Zimbabwe
 Namibia;2587801;19.7;Pustynny;Angola, Botswana, RPA, Zambia
 Nepal;29913682;12.5;Himalajski;Chiny, Indie
 Niemcy;83783942;9.6;Umiarkowany;Austria, Belgia, Czechy, Dania, Francja, Luksemburg, Holandia, Polska, Szwajcaria
-Niger;25689966;28.4;Pustynny; Algieria, Benin, Burkina Faso, Czad, Libia, Mali, Nigeria
+Niger;25689966;28.4;Pustynny;Algieria, Benin, Burkina Faso, Czad, Libia, Mali, Nigeria
 Nigeria;200963599;26.4;Tropikalny;Benin, Czad, Kamerun, Niger
 Norwegia;5328216;1.1;Polarny;Finlandia, Rosja, Szwecja
 Nowa Zelandia;4904762;13.1;Morski;None
@@ -119,13 +119,13 @@ Wenezuela;28421581;26.9;Tropikalny;Brazylia, Kolumbia
 Wegry;9764000;10.9;Kontynentalny;Austria, Chorwacja, Rumunia, Serbia, Slowacja, Slowenia, Ukraina
 Wielka Brytania;67802690;9.6;Morski;Irlandia, Francja, Belgia, Holandia, Niemcy, Dania
 Wietnam;97338583;25.9;Tropikalny monsun;Kambodza, Chiny, Laos
-Wybrzeze Kosci Sloniowej;28252505;27.1;Tropikalny;Burkina Faso, Ghana, Guinea, Liberia, Mali
+Wybrzeze Kosci Sloniowej;28252505;27.1;Tropikalny;Burkina Faso, Ghana, Gwinea, Liberia, Mali
 Zambia;18383955;21.8;Tropikalny;Angola, Malawi, Mozambik, Namibia, Tanzania, Zimbabwe
 Zimbabwe;14862924;21.0;Tropikalny;Botswana, Mozambik, RPA, Zambia
 Portoryko;3193694;26.9;Tropikalny;None
 Albania;2870324;24.0;Srodziemnomorski;Czarnogora, Grecja, Macedonia Polnocna, Serbia
 Bosnia i Hercegowina;3516822;19.5;Kontynentalny;Chorwacja, Serbia, Czarnogora
-Algieria;40400000;28.3;Pustynny;Tunezja, Libia, Niger, Mali, Mauretania, Maroko, Mauritius
+Algieria;40400000;28.3;Pustynny;Tunezja, Libia, Niger, Mali, Mauretania, Maroko
 Armenia;2968000;12.1;Kontynentalny;Azerbejdzan, Gruzja, Iran, Turcja
 Kirgistan;6149000;14.4;Kontynentalny;Kazachstan, Uzbekistan, Tadzykistan, Chiny
 Sahara Zachodnia;582463;29.7;Pustynny;Maroko, Mauretania, Algieria
@@ -136,17 +136,17 @@ Chiny;1403500365;8.5;Różnorodny;Afganistan, Bhutan, Myanmar, Indie, Kazachstan
 Bangladesz;166303498;26.8;Tropikalny;Indie, Myanmar
 Czad;16877000;27.7;Saharyjski;Libia, Sudan, Republika Srodkowoafrykanska, Kamerun, Nigeria, Niger
 Myanmar;54704000;25.0;Tropikalny;Bangladesz, Chiny, Indie, Laos, Tajlandia
-Burkina Faso;20870000;28.3;Sawanna;Mali, Niger, Benin, Togo, Ghana, Wybrzeże Kości Słoniowej, Mali
-Gwinea;12414318;26.0;Tropikalny;Senegal, Gwinea-Bissau, Sierra Leone, Liberia, Wybrzeze Kosci Sloniowej, Mali, Guinea Rownikowa
+Burkina Faso;20870000;28.3;Sawanna;Mali, Niger, Benin, Togo, Ghana, Wybrzeze Kosci Sloniowej, Mali
+Gwinea;12414318;26.0;Tropikalny;Senegal, Gwinea-Bissau, Sierra Leone, Liberia, Wybrzeze Kosci Sloniowej, Mali, Gwinea Rownikowa
 Gwinea-Bissau;1890900;26.6;Tropikalny;Senegal, Gwinea, Gwinea Równikowa
-Gwinea Rownikowa;1400000;25.4;Tropikalny;Kamerun, Gabon, Republika Środkowoafrykańska, Gwinea-Bissau, Ekwador
+Gwinea Rownikowa;1400000;25.4;Tropikalny;Kamerun, Gabon, Republika Srodkowoafrykanska, Gwinea-Bissau, Ekwador
 Benin;12123000;27.5;Sawanna;Togo, Nigeria, Niger, Burkina Faso, Wybrzeze Kosci Sloniowej
 Gambia;2100568;27.0;Tropikalny;Senegal
 Katar;2832067;30.0;Pustynny;Arabia Saudyjska, Zjednoczone Emiraty Arabskie
-Republika Środkowoafrykańska;4844927;24.6;Sawanna;Sudan Południowy, Sudan, Czad, Kamerun, Kongo, Demokratyczna Republika Konga
+Republika Srodkowoafrykanska;4844927;24.6;Sawanna;Sudan Południowy, Sudan, Czad, Kamerun, Kongo, Demokratyczna Republika Konga
 Zjednoczone Emiraty Arabskie;9890400;28.8;Pustynny;Oman, Arabia Saudyjska, Katar
 Jemen;28120000;27.0;Pustynny;Arabia Saudyjska, Oman
-Ghana;30280811;27.5;Sawanna;Wybrzeże Kości Słoniowej, Burkina Faso, Togo
+Ghana;30280811;27.5;Sawanna;Wybrzeze Kosci Sloniowej, Burkina Faso, Togo
 Erytrea;5647168;26.4;Pustynny;Sudan, Etiopia, Dżibuti
 Beliz;408487;26.0;Tropikalny;Gwatemala, Meksyk
 Belize;398050;27.0;Tropikalny;Gwatemala, Meksyk
@@ -164,3 +164,4 @@ Gibraltar;33701;18.9;Śródziemnomorski;Hiszpania
 Moldawia;2653000;10.5;Kontynentalny;Rumunia, Ukraina
 Azerbejdzan;10139175;13.5;Kontynentalny;Gruzja, Armenia, Iran, Turcja, Rosja
 Libia;6871287;26.2;Pustynny;Algieria, Tunezja, Niger, Czad, Sudan, Egipt
+Poludniowy Sudan; 13510000; 31.2; Sudan, Etiopia, Uganda, Kenia, Republika Srodkowoafrykanska, Demokratyczna Republika Konga, Wybrzeze Kostaryki
