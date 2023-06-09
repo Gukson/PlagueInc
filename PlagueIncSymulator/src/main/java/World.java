@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * Klasa reprezentujaca swiat gry.
+ */
 public class World {
     public static int day;
     public static int population;
@@ -15,13 +19,30 @@ public class World {
     public static HashMap<String, String> flightsMap;
     public static HashMap<String, String> seaCruiseMap;
 
+    /**
+     * Ustawia populacje swiata.
+     *
+     * @param population Populacja swiata.
+     */
     public static void setPopulation(int population){
         World.population = population;
     }
+
+    /**
+     * Zwraca populacje swiata.
+     *
+     * @return Populacja swiata.
+     */
     public static int getPopulation(){
         return population;
     }
 
+    /**
+     * Rozpoczyna nowa gre
+     *
+     * @param startingCountry Nazwa kraju, ktory jako pierwwszy zostanie zarazony
+     * @param virusName Nazwa wirusa.
+     */
     //Zaraża pierwszy wybrany kraj
     public static void StartGame(String startingCountry, String virusName) throws InterruptedException {
         infectedCountries = new ArrayList<Country>();
@@ -36,8 +57,10 @@ public class World {
         infectedCountries.add(firstInfected);
         Game();
     }
-
-    //Główna funckja odpowiedzialna za grę
+    /**
+     * Głowna funkcja odpowiedzialna za logike gry.
+     *
+     */
     private static void Game() throws InterruptedException {
         day = 1;
         infectedPopulation = 1;
@@ -54,7 +77,11 @@ public class World {
             Thread.sleep(10);
         }
     }
-
+    /**
+     * Funkcja odpowiedzialna za zarazanie .
+     *
+     * @param c Kraj, w w ktorym wystepuje zarazanie.
+     */
     //Funkcja odpowiedzialna za proces zrażania w danym kraju
     private static void infectionProcess(Country c){
         int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * virus.cheanseForInfection)); //wylicza ilość nowych zarażonych

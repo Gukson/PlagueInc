@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
-
+/**
+ * Klasa Configurator służy do konfiguracji symulatora.
+ */
 public class Configurator {
-    public static ArrayList<Country> countries = new ArrayList<>();
 
+    /**
+     * Lista prechowujaca kraje.
+     */
+    public static ArrayList<Country> countries = new ArrayList<>();
+    /**
+     * Konstruktor Configurator wywoluje metody o lotach, rejsach ,krajach oraz oblicza liczbe ludnosci
+     */
     public Configurator(){
         readInfoAboutFlights("PlagueIncSymulator/Data/flights.csv");
         readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
@@ -15,6 +23,12 @@ public class Configurator {
         int population = calculateWorldPopulation();
         World.setPopulation(population);
     }
+
+    /**
+     * Odczytuje informacji o krajach z podanego pliku
+     *
+     * @param filename Sciezka do pliku zawierajaca  informacje o krajach
+     */
     private void readInfoAboutCountries(String filename) {
         try {
             Scanner scanner = new Scanner(new File(filename));
@@ -39,6 +53,11 @@ public class Configurator {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Oblicza populate swiata
+     *
+     * @return Populacja swiata
+     */
     private int calculateWorldPopulation(){
         int population = 0;
         for (Country country :countries){
@@ -46,6 +65,11 @@ public class Configurator {
         }
         return population;
     }
+    /**
+     * Odczytuje informacje o lotach z podanego pliku
+     *
+     * @param filename Sciezka do pliku zawierajaca  informacje o lotach
+     */
     private void readInfoAboutFlights(String filename){
         World.flightsMap = new HashMap<String,String >();
         try{
@@ -63,6 +87,11 @@ public class Configurator {
         }
     }
 
+    /**
+     * Odczytuje informacje o rejsach z podanego pliku
+     *
+     * @param filename Sciezka do pliku zawierajaca  informacje o rejsach
+     */
     private void readInfoAboutSeaCruise(String filename){
         World.seaCruiseMap = new HashMap<String,String >();
         try{
@@ -79,7 +108,11 @@ public class Configurator {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Konfiguracja oraz incijalizacja symulatora
+     *
+     *
+     */
     public static void startConfigurator() {
         Configurator gui = new Configurator();
         int worldPopulation = World.getPopulation();
