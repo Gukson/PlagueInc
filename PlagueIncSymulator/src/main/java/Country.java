@@ -114,10 +114,7 @@ public class Country {
             if(notInfected.size() != 0){
                 randomNumber = random.nextInt( notInfected.size());
                 Country newInfected = notInfected.get(randomNumber);
-                newInfected.setStatusInfected();
-                newInfected.setInfectedPopulation(1);
-                World.infectedCountries.add(newInfected);
-                World.virus.addPoint();
+                newInfected.newInfectedConfiguration();
             }
         }
     }
@@ -146,5 +143,12 @@ public class Country {
         System.out.println("Populacja: "+ population);
         System.out.println("Zarazeni: "+ infectedPopulation);
         System.out.println();
+    }
+
+    public void newInfectedConfiguration(){
+        setStatusInfected();
+        setInfectedPopulation(1);
+        World.infectedCountries.add(this);
+        World.virus.addPoint();
     }
 }

@@ -52,4 +52,8 @@ public class Virus {
      * Ustawia obecnosc statkow na true ???? DO POPRAWY
      */
     public void setOnShip(){ship=true;}
+
+    public boolean getAirplaneStatus(){return airplane;}
+
+    public boolean getShipStatus(){return ship;}
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 
 /**
@@ -52,9 +53,7 @@ public class World {
         virus = new Virus(virusName);
 
         Country firstInfected = coutriesMap.get(startingCountry);
-        firstInfected.setStatusInfected();
-        firstInfected.setInfectedPopulation(1);
-        infectedCountries.add(firstInfected);
+        firstInfected.newInfectedConfiguration();
         Game();
     }
     /**
@@ -87,6 +86,14 @@ public class World {
         int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
         c.infectYourNeighbor();
+        if(virus.getAirplaneStatus() && flightsMap.containsKey(c.getName())){
+            Trasport plane = new Airplane();
+            plane.infected(c);
+        }
+        if(virus.getAirplaneStatus() && seaCruiseMap.containsKey(c.getName())){
+            Trasport ship = new Ship();
+            ship.infected(c);
+        }
 
     }
 
