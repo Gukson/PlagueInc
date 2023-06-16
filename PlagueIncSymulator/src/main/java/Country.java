@@ -135,8 +135,13 @@ public class    Country {
         }
     }
 
-    public int killInfectedPeople(int i){
-        int deaths = (int) (i * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
+    /**
+     * Funkcja odpowiedzialna za zabijanie zarazonych ludzi.
+     *
+     * @param people Ludzie, ktorych czesc zostanie zabita.
+     */
+    public int killInfectedPeople(int people){
+        int deaths = (int) (people * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
         System.out.println(deaths);
         if (deadPopulation + deaths < population){
             deadPopulation += deaths;
@@ -148,6 +153,11 @@ public class    Country {
         healthyPopulation = population - deadPopulation - infectedPopulation;
         return deaths;
     }
+    /**
+     * Funkcja odpowiadajaca za uzupelnianie tablicy osobami zarazonymi w ciagu 14 dni.
+     *
+     * @param newInfected nowe zarazone osoby.
+     */
     private void updateInfectedLast14Days(int newInfected){
         int index = World.day % 14; // AKTUALNY INDEX
         if(World.day > 14){
