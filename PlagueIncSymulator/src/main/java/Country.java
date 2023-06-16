@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * Klasa Configurator służy do przechowywania informacji o kraju.
  */
-public class Country {
+public class    Country {
     private boolean infected = false;
     private final String CountryName;
     private float temperature;
