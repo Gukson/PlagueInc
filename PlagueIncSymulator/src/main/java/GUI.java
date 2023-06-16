@@ -3,6 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
+/**
+ * Klasa GUI reprezentujaca interfejs graficzny symulacji.
+ */
 public class GUI extends JFrame implements ActionListener {
     JFrame okno;
 
@@ -15,10 +20,20 @@ public class GUI extends JFrame implements ActionListener {
     JPanel pMainPage, pNewGame;
 
 
+    /**
+     * Metoda glowna aplikacji
+     *
+     * @param args argumenty
+     */
     public static void main(String[] args) {
         GUI appMenu = new GUI();
         Configurator.startConfigurator();
     }
+    /**
+     * Konstruktor klasy GUI
+     *
+     */
+
 
     public GUI(){
         okno = new JFrame("Plague INC");
@@ -30,6 +45,11 @@ public class GUI extends JFrame implements ActionListener {
         MainPage();
     }
 
+
+    /**
+     * Tworzy strone glowna interfejsu graficznego
+     *
+     */
     public void MainPage(){
         pMainPage = new JPanel();
         pMainPage.setBounds(0,0,width,height);
@@ -48,6 +68,9 @@ public class GUI extends JFrame implements ActionListener {
         pMainPage.add(bExit);
         okno.add(pMainPage);
     }
+    /**
+     * Tworzy panel nowej gry.
+     */
 
     public void NewGame(){
         pNewGame = new JPanel();
@@ -94,6 +117,12 @@ public class GUI extends JFrame implements ActionListener {
         okno.add(pNewGame);
     }
 
+
+    /**
+     * Obsluguje akcje wykonane przez uzytkownika
+     *
+     * @param e - klikniety przycisk
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object zrodlo = e.getSource();
