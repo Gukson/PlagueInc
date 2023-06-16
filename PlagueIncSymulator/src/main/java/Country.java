@@ -16,6 +16,8 @@ public class Country {
     private int healthyPopulation;
     private int infectedPopulation;
     private int deadPopulation;
+    private int[] infectedLast14Days;
+
 
     /**
      * Konstruktor klasy Country.
@@ -35,6 +37,7 @@ public class Country {
         this.healthyPopulation = population;
         availableFlights = new ArrayList<String>();
         availableShipCruise = new ArrayList<String>();
+        infectedLast14Days = new int[14];
     }
     /**
      * Zwraca populacje kraju.
@@ -83,6 +86,7 @@ public class Country {
         infectedPopulation = i;
         if(infectedPopulation > population) infectedPopulation = population;
         healthyPopulation = population - infectedPopulation;
+        updateInfectedLast14Days(i);
     }
 
     /**
@@ -93,6 +97,7 @@ public class Country {
         infectedPopulation += i;
         if(infectedPopulation > population) infectedPopulation = population;
         healthyPopulation = population - infectedPopulation;
+        updateInfectedLast14Days(i);
     }
     /**
      * Ustawia status kraju na zarazony
@@ -130,6 +135,41 @@ public class Country {
         }
     }
 
+    public int killInfectedPeople(int i){
+        int deaths = (int) (i * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
+        System.out.println(deaths);
+        if (deadPopulation + deaths < population){
+            deadPopulation += deaths;
+            infectedPopulation -= deaths;
+        }
+        else{
+            deadPopulation = population;
+        }
+        healthyPopulation = population - deadPopulation - infectedPopulation;
+        return deaths;
+    }
+    private void updateInfectedLast14Days(int newInfected){
+        int index = World.day % 14; // AKTUALNY INDEX
+        if(World.day > 14){
+            infectedLast14Days[index] += newInfected;
+            int dead = killInfectedPeople(infectedLast14Days[index]); // ZABIJAMY TYCH z INDEXU
+            infectedLast14Days[index] -= dead;
+            int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
+            // TYCH CO NIE UDALO SIE ZABIC PRZENOSZE DO NASTEPNEGO DNIA PONIEWAZ SA ZARAZENI DLUZEJ NIZ 14 DNI P.S Dziwnie sie o tym pisze XD
+            // JEDNAK PRZENOSZE TYLKO POLOWE BO SIE BLOKUJE I POLOWA TYCH KTORYCH NIE PRZENIOSLEM BEDZIE ZARAZANA ZA 14 DNI
+            System.out.println(index);
+            int moveInfected = infectedLast14Days[index] / 2;
+
+            infectedLast14Days[nextIndex] += moveInfected;
+            infectedLast14Days[index] = moveInfected;
+            // USUWAM TYCH KTORYCH NIE ZABILEM Z AKTUALNEGO INDEXU PONIEWAZ DODALEM ICH DO NASTEPNEGO DNIA.
+
+        }
+        else{
+            infectedLast14Days[index] = newInfected; // ZAPELNIAM TABLICE 14 dni
+        }
+    }
+
     /**
      * Generuje ArrayListe krajow , ktorzy nie sa zarazeni
      *
@@ -153,6 +193,7 @@ public class Country {
         System.out.println("Nazwa Kraju: "+ getName());
         System.out.println("Populacja: "+ population);
         System.out.println("Zarazeni: "+ infectedPopulation);
+        System.out.println("Death: " + deadPopulation);
         System.out.println();
     }
     public void newInfectedConfiguration(){

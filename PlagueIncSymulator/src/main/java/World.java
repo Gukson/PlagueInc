@@ -64,7 +64,7 @@ public class World {
             for(int x = 0; x< infectedCountries.size(); x++){
                 Country c = infectedCountries.get(x);
                 infectionProcess(c);
-                //c.printInformations();
+                c.printInformations();
             }
             if(day%30 == 0)virus.addPoint();
             day++;
