@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 /**
  * Klasa Configurator służy do przechowywania informacji o kraju.
@@ -106,6 +107,7 @@ public class Country {
 
      */
     public void infectYourNeighbor(){
+        if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
         int randomNumber = random.nextInt(population - 1 + 1) + 1;
         System.out.println();
@@ -115,6 +117,7 @@ public class Country {
                 randomNumber = random.nextInt( notInfected.size());
                 Country newInfected = notInfected.get(randomNumber);
                 newInfected.newInfectedConfiguration();
+
             }
         }
     }
@@ -127,10 +130,10 @@ public class Country {
     //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
-        System.out.println(neighbours);
+        //System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
-            System.out.println(c);
+//            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
@@ -144,7 +147,6 @@ public class Country {
         System.out.println("Zarazeni: "+ infectedPopulation);
         System.out.println();
     }
-
     public void newInfectedConfiguration(){
         setStatusInfected();
         setInfectedPopulation(1);

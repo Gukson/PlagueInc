@@ -68,11 +68,11 @@ public class World {
             for(int x = 0; x< infectedCountries.size(); x++){
                 Country c = infectedCountries.get(x);
                 infectionProcess(c);
-                c.printInformations();
+                //c.printInformations();
             }
             if(day%30 == 0)virus.addPoint();
             day++;
-            System.out.println("Day: " + day);
+            //System.out.println("Day: " + day);
             Thread.sleep(10);
         }
     }
@@ -86,6 +86,7 @@ public class World {
         int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
         c.infectYourNeighbor();
+
         if(virus.getAirplaneStatus() && flightsMap.containsKey(c.getName())){
             Trasport plane = new Airplane();
             plane.infected(c);

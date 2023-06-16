@@ -21,8 +21,8 @@ public class Virus {
         cheanseForDeath = 0;
         cheanseForInfection = 0.1;
         virusPoints = 0;
-        airplane = false;
-        ship = false;
+        airplane = true;
+        ship = true;
     }
 
     /**
