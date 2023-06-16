@@ -8,6 +8,9 @@ public class Virus {
     private int virus_points;
     public double cheanseForDeath;
     public double cheanseForInfection;
+    public double cheanseForInfectedFlight;
+
+    public double cheanseForInfectedShipCruise;
     private int virusPoints;
     public int difficulty;
     private boolean airplane, ship;
@@ -20,6 +23,7 @@ public class Virus {
         this.virus_name = Name;
         cheanseForDeath = 0;
         cheanseForInfection = 0.1;
+        cheanseForInfectedFlight = 10;
         virusPoints = 0;
         airplane = true;
         ship = true;

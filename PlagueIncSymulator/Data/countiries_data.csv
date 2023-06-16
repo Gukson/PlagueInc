@@ -106,7 +106,7 @@ Turkmenistan;5942089;15.8;Kontynentalny;Afganistan, Iran, Kazachstan, Uzbekistan
 Uganda;47010100;23.5;Tropikalny;Kenia, Rwanda, Sudan, Tanzania
 Ukraina;43493822;7.7;Kontynentalny;Bialorus, Czechy, Moldawia, Polska, Rosja, Rumunia, Slowacja, Wegry
 Urugwaj;3469551;17.1;Morski;Argentyna, Brazylia
-USA;332915073;12.5;Roznorodny; Kanada, Meksyk
+USA;332915073;12.5;Roznorodny;Kanada, Meksyk
 Uzbekistan;33955722;15.8;Kontynentalny;Afganistan, Kazachstan, Kirgistan, Tadzykistan, Turkmenistan
 Wenezuela;28421581;26.9;Tropikalny;Brazylia, Kolumbia
 Wegry;9764000;10.9;Kontynentalny;Austria, Chorwacja, Rumunia, Serbia, Slowacja, Slowenia, Ukraina
@@ -163,3 +163,12 @@ Gabon;2 225 728;26.0;Tropikalny;Demokratyczna Republika Konga, Gwinea Rownikowa,
 Demokratyczna Republika Konga;101 780 263;24.0;Tropikalny;Demokratyczna Republika Konga, Republika Srodkowoafrykanska, Sudan Poludniowy, Uganda, Rwanda, Burundi, Tanzania, Zambia, Angola
 Burundi;11 530 580;23.0;Tropikalny;Tanzania, Rwanda, Demokratyczna Republika Konga
 Suazi;1 160 164;20.0;Subtropikalny;Republika Poludniowej Afryki, Mozambik
+Nowa Zelandia;4 917 573;15.0;Umiarkowany;Australia
+Singapur;5 896 686;27.0;Tropikalny;Malezja
+Sri Lanka;22 327 429;27.0;Tropikalny;Indie, Malezja
+Portoryko;3 193 694;28.0;Tropikalny;None
+Kuba;11 326 616;25.0;Tropikalny;USA, Bahamy, Haiti, Jamajka, Meksyk
+Bahamy;396 913;27.0;Tropikalny;USA, Kuba, Haiti, Turks i Caicos
+Haiti;11 263 770;26.0;Tropikalny;Dominikana
+Turks i Caicos;38 191;28.0;Tropikalny;Bahamy, Haiti, Jamajka, Kuba, Dominikana
+Jamajka;2 961 167;27.0;Tropikalny;Kuba, Haiti, Dominikana

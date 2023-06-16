@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.HashSet;
 
 
 /**
@@ -11,14 +11,12 @@ public class World {
     public static int population;
     public static int infectedPopulation;
     public static int deadPopulation;
-
-
     public static Virus virus;
-
     public static ArrayList<Country> infectedCountries;
     public static HashMap<String,Country> coutriesMap;
-    public static HashMap<String, String> flightsMap;
+    public static ArrayList<String> flightsArrayList;
     public static HashMap<String, String> seaCruiseMap;
+    public static HashSet<String> CountriesWithFlights;
 
     /**
      * Ustawia populacje swiata.
@@ -47,8 +45,6 @@ public class World {
     //Zaraża pierwszy wybrany kraj
     public static void StartGame(String startingCountry, String virusName) throws InterruptedException {
         infectedCountries = new ArrayList<Country>();
-        coutriesMap = new HashMap<String,Country>();
-        for(Country c : Configurator.countries) coutriesMap.put(c.getName(),c);
 
         virus = new Virus(virusName);
 
@@ -72,7 +68,7 @@ public class World {
             }
             if(day%30 == 0)virus.addPoint();
             day++;
-            //System.out.println("Day: " + day);
+            System.out.println("Day: " + day);
             Thread.sleep(10);
         }
     }
@@ -87,13 +83,11 @@ public class World {
         c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
         c.infectYourNeighbor();
 
-        if(virus.getAirplaneStatus() && flightsMap.containsKey(c.getName())){
-            Trasport plane = new Airplane();
-            plane.infected(c);
+        if(virus.getAirplaneStatus() && c.getFlightsAmout()!=0){
+            c.infectByPlane();
         }
-        if(virus.getAirplaneStatus() && seaCruiseMap.containsKey(c.getName())){
-            Trasport ship = new Ship();
-            ship.infected(c);
+        if(virus.getAirplaneStatus() && c.getShipCruisesAmount()!=0){
+            c.infectByShip();
         }
 
     }

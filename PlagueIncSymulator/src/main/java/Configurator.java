@@ -1,8 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 /**
  * Klasa Configurator służy do konfiguracji symulatora.
@@ -17,9 +17,9 @@ public class Configurator {
      * Konstruktor Configurator wywoluje metody o lotach, rejsach ,krajach oraz oblicza liczbe ludnosci
      */
     public Configurator(){
+        readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");
         readInfoAboutFlights("PlagueIncSymulator/Data/flights.csv");
         readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
-        readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");
         int population = calculateWorldPopulation();
         World.setPopulation(population);
     }
@@ -30,6 +30,7 @@ public class Configurator {
      * @param filename Sciezka do pliku zawierajaca  informacje o krajach
      */
     private void readInfoAboutCountries(String filename) {
+        World.coutriesMap = new HashMap<String,Country>();
         try {
             Scanner scanner = new Scanner(new File(filename));
             while (scanner.hasNextLine()) {
@@ -48,6 +49,7 @@ public class Configurator {
                 String climate = fields[3];
                 countries.add(new Country(name, population, avgTemp, climate,neighbours));
             }
+            for(Country c : countries) World.coutriesMap.put(c.getName(),c);
             scanner.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -71,7 +73,6 @@ public class Configurator {
      * @param filename Sciezka do pliku zawierajaca  informacje o lotach
      */
     private void readInfoAboutFlights(String filename){
-        World.flightsMap = new HashMap<String,String >();
         try{
             Scanner scanner = new Scanner(new File(filename));
             while (scanner.hasNextLine()) {
@@ -79,8 +80,9 @@ public class Configurator {
                 if (line.startsWith("Kraj")) {
                     continue;
                 }
-                String[] fields = line.split(";");
-                World.flightsMap.put(fields[0],fields[1]);
+                String[] temp = line.split(";");
+                System.out.println(temp[0]);
+                World.coutriesMap.get(temp[0]).addFlight(temp[1]);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -101,8 +103,9 @@ public class Configurator {
                 if (line.startsWith("Kraj")) {
                     continue;
                 }
-                String[] fields = line.split(";");
-                World.seaCruiseMap.put(fields[0],fields[1]);
+                String[] temp = line.split(";");
+                System.out.println(temp[0] + " Statek");
+                World.coutriesMap.get(temp[0]).addShipCruise(temp[1]);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

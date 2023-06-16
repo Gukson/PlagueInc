@@ -10,7 +10,8 @@ public class Country {
     private float temperature;
     private String  climate;
     private final String[] neighbours;
-
+    private ArrayList<String> availableFlights;
+    private ArrayList<String> availableShipCruise;
     private final int population;
     private int healthyPopulation;
     private int infectedPopulation;
@@ -32,6 +33,8 @@ public class Country {
         this.climate = climate;
         this.neighbours = neighbour;
         this.healthyPopulation = population;
+        availableFlights = new ArrayList<String>();
+        availableShipCruise = new ArrayList<String>();
     }
     /**
      * Zwraca populacje kraju.
@@ -102,6 +105,11 @@ public class Country {
      */
     public boolean getInfectedStatus(){return infected;}
 
+    public int getFlightsAmout(){return availableFlights.size();}
+    public void addFlight(String flight){availableFlights.add(flight);}
+    public int getShipCruisesAmount(){return availableShipCruise.size();}
+    public void addShipCruise(String flight){availableShipCruise.add(flight);}
+
     /**
      * Zaraza losowego sasiada
 
@@ -130,10 +138,10 @@ public class Country {
     //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
-        //System.out.println(neighbours);
+        System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
-//            System.out.println(c);
+            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
@@ -153,4 +161,34 @@ public class Country {
         World.infectedCountries.add(this);
         World.virus.addPoint();
     }
+
+    public void infectByPlane(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(100);
+        if(randomNumber <= World.virus.cheanseForInfectedFlight){
+            randomNumber = random.nextInt(availableFlights.size()) + 1;
+            Country newInfected = World.coutriesMap.get(availableFlights.get(randomNumber-1));
+            if(!newInfected.getInfectedStatus()){
+                System.out.println("SAMOLOT ZAINFEKOWAL " + newInfected.getName());
+                newInfected.newInfectedConfiguration();
+                //KOMUNIKAT W GUI
+            }
+        }
+
+    }
+
+    public void infectByShip(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(100);
+        if(randomNumber <= World.virus.cheanseForInfectedShipCruise){
+            randomNumber = random.nextInt(availableShipCruise.size()) + 1;
+            Country newInfected = World.coutriesMap.get(availableShipCruise.get(randomNumber-1));
+            if(!newInfected.getInfectedStatus()){
+                System.out.println("STATEK ZAINFEKOWAL " + newInfected.getName());
+                newInfected.newInfectedConfiguration();
+                //KOMUNIKAT W GUI
+            }
+        }
+    }
+
 }

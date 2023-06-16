@@ -1,14 +1,14 @@
 Kraj początkowy;Kraj docelowy
-Stany Zjednoczone;Wielka Brytania
-Wielka Brytania;Stany Zjednoczone
-Stany Zjednoczone;Kanada
-Kanada;Stany Zjednoczone
-Stany Zjednoczone;Meksyk
-Meksyk;Stany Zjednoczone
-Stany Zjednoczone;Francja
-Francja;Stany Zjednoczone
-Stany Zjednoczone;Niemcy
-Niemcy;Stany Zjednoczone
+USA;Wielka Brytania
+Wielka Brytania;USA
+USA;Kanada
+Kanada;USA
+USA;Meksyk
+Meksyk;USA
+USA;Francja
+Francja;USA
+USA;Niemcy
+Niemcy;USA
 Wielka Brytania;Hiszpania
 Hiszpania;Wielka Brytania
 Wielka Brytania;Francja
