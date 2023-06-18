@@ -1,14 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
+
 /**
  * Klasa Configurator służy do konfiguracji symulatora.
  */
 public class Configurator {
-
     /**
      * Lista prechowujaca kraje.
      */
@@ -20,7 +17,7 @@ public class Configurator {
         readInfoAboutCountries("PlagueIncSymulator/Data/countiries_data.csv");
         readInfoAboutFlights("PlagueIncSymulator/Data/flights.csv");
         readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
-        int population = calculateWorldPopulation();
+        long population = calculateWorldPopulation();
         World.setPopulation(population);
     }
 
@@ -33,7 +30,8 @@ public class Configurator {
         World.coutriesMap = new HashMap<String,Country>();
         try {
             Scanner scanner = new Scanner(new File(filename));
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine())
+            {
                 String line = scanner.nextLine();
                 if (line.startsWith("KRAJ")) {
                     continue;
@@ -43,7 +41,7 @@ public class Configurator {
                 String name = fields[0];
                 String[] neighbours = fields[4].split(", ");
                 String populationStr = fields[1].replaceAll("\\s+", "");
-                int population = Integer.parseInt(populationStr);
+                long population = Integer.parseInt(populationStr);
                 String avgTempStr = fields[2].replaceAll("[^\\d.-]+", "");
                 double avgTemp = Double.parseDouble(avgTempStr);
                 String climate = fields[3];
@@ -60,8 +58,8 @@ public class Configurator {
      *
      * @return Populacja swiata
      */
-    private int calculateWorldPopulation(){
-        int population = 0;
+    private long calculateWorldPopulation(){
+        long population = 0;
         for (Country country :countries){
             population += country.getPopulation();
         }
@@ -81,14 +79,13 @@ public class Configurator {
                     continue;
                 }
                 String[] temp = line.split(";");
-                System.out.println(temp[0]);
+
                 World.coutriesMap.get(temp[0]).addFlight(temp[1]);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-
     /**
      * Odczytuje informacje o rejsach z podanego pliku
      *
@@ -104,7 +101,6 @@ public class Configurator {
                     continue;
                 }
                 String[] temp = line.split(";");
-                System.out.println(temp[0] + " Statek");
                 World.coutriesMap.get(temp[0]).addShipCruise(temp[1]);
             }
         } catch (FileNotFoundException e) {
@@ -118,13 +114,7 @@ public class Configurator {
      */
     public static void startConfigurator() {
         Configurator gui = new Configurator();
-        int worldPopulation = World.getPopulation();
-        System.out.println("WORLD POPULATION " + worldPopulation);
-        for (Country country : gui.countries){
-            System.out.println(country.getName() + "  POPULATION: " + country.getPopulation() + "  NEIGHBOURS : " + country.getNeighbours());
-            String[] Arr = country.getNeighbours();
-            System.out.println(Arr[0]);
-        }
+        long worldPopulation = World.getPopulation();
     }
 
 }

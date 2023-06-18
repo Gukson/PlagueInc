@@ -1,16 +1,15 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-
 /**
  * Klasa reprezentujaca swiat gry.
  */
 public class World {
     public static int day;
-    public static int population;
-    public static int infectedPopulation;
-    public static int deadPopulation;
+    public static long population;
+    public static long infectedPopulation;
+    public static long healthyPopulation;
+    public static long deadPopulation;
     public static Virus virus;
     public static ArrayList<Country> infectedCountries;
     public static HashMap<String,Country> coutriesMap;
@@ -23,73 +22,31 @@ public class World {
      *
      * @param population Populacja swiata.
      */
-    public static void setPopulation(int population){
+    public static void setPopulation(long population){
         World.population = population;
     }
-
     /**
      * Zwraca populacje swiata.
      *
      * @return Populacja swiata.
      */
-    public static int getPopulation(){
+    public static long getPopulation(){
         return population;
-    }
-
-    /**
-     * Rozpoczyna nowa gre
-     *
-     * @param startingCountry Nazwa kraju, ktory jako pierwwszy zostanie zarazony
-     * @param virusName Nazwa wirusa.
-     */
-    //Zaraża pierwszy wybrany kraj
-    public static void StartGame(String startingCountry, String virusName) throws InterruptedException {
-        infectedCountries = new ArrayList<Country>();
-
-        virus = new Virus(virusName);
-
-        Country firstInfected = coutriesMap.get(startingCountry);
-        firstInfected.newInfectedConfiguration();
-        Game();
-    }
-    /**
-     * Głowna funkcja odpowiedzialna za logike gry.
-     *
-     */
-    private static void Game() throws InterruptedException {
-        day = 1;
-        infectedPopulation = 1;
-        deadPopulation = 0;
-        while(true){
-            for(int x = 0; x< infectedCountries.size(); x++){
-                Country c = infectedCountries.get(x);
-                infectionProcess(c);
-                c.printInformations();
-            }
-            if(day%30 == 0)virus.addPoint();
-            day++;
-            System.out.println("Day: " + day);
-            Thread.sleep(10);
-        }
     }
     /**
      * Funkcja odpowiedzialna za zarazanie .
      *
-     * @param c Kraj, w w ktorym wystepuje zarazanie.
+     * @param country Kraj, w w ktorym wystepuje zarazanie.
      */
-    //Funkcja odpowiedzialna za proces zrażania w danym kraju
-    private static void infectionProcess(Country c){
-        int newInfectedPopulation = (int) (Math.ceil(c.getInfectedPopulation() * virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
-        c.addInfectedPopulation(newInfectedPopulation); //dodaje nowych zarażonych
-        c.infectYourNeighbor();
-
-        if(virus.getAirplaneStatus() && c.getFlightsAmout()!=0){
-            c.infectByPlane();
+    static void infectionProcess(Country country){
+        long newInfectedPopulation = country.addInfectedPopulation();
+//        country.printInformations();
+        country.infectYourNeighbor();
+        if(virus.getAirplaneStatus() && country.getFlightsAmout()!=0){
+            country.infectByPlane();
         }
-        if(virus.getAirplaneStatus() && c.getShipCruisesAmount()!=0){
-            c.infectByShip();
+        if(virus.getAirplaneStatus() && country.getShipCruisesAmount()!=0){
+            country.infectByShip();
         }
-
     }
-
 }

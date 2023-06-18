@@ -7,18 +7,16 @@ import java.util.Random;
 public class    Country {
     private boolean infected = false;
     private final String CountryName;
-    private float temperature;
+    private final float temperature;
     private String  climate;
     private final String[] neighbours;
     private ArrayList<String> availableFlights;
     private ArrayList<String> availableShipCruise;
-    private final int population;
-    private int healthyPopulation;
-    private int infectedPopulation;
-    private int deadPopulation;
+    private final long population;
+    private long healthyPopulation;
+    private long infectedPopulation;
+    private long deadPopulation;
     private int[] infectedLast14Days;
-
-
     /**
      * Konstruktor klasy Country.
      *
@@ -28,7 +26,7 @@ public class    Country {
      * @param climate    Klimat
      * @param neighbour  Tablica sąsiadów kraju
      */
-    public Country(String name, int population, double avgTemp, String climate, String[] neighbour) {
+    public Country(String name, long population, double avgTemp, String climate, String[] neighbour) {
         this.CountryName = name;
         this.population = population;
         this.temperature = (float) avgTemp;
@@ -43,26 +41,24 @@ public class    Country {
      * Zwraca populacje kraju.
      * @return Populacja kraju.
      */
-    public int getPopulation(){
+    public long getPopulation(){
         return population;
     }
     /**
      * Zwraca liczbe zdrowych osob w kraju
      * @return Liczba zdrowych osob
      */
-    public int getHealthyPopulation(){return healthyPopulation;}
-
+    public long getHealthyPopulation(){return healthyPopulation;}
     /**
      * Zwraca liczbe chorych osob w kraju
      * @return Liczba chorych osob
      */
-    public int getInfectedPopulation(){return infectedPopulation;}
+    public long getInfectedPopulation(){return infectedPopulation;}
     /**
      * Zwraca liczbe martwych osob w kraju
      * @return Liczba martwych osob
      */
-    public int getDeadPopulation(){return deadPopulation;}
-
+    public long getDeadPopulation(){return deadPopulation;}
     /**
      * Zwraca nazwe kraju
      * @return Nazwa kraju.
@@ -77,7 +73,6 @@ public class    Country {
     public String[] getNeighbours(){
         return neighbours;
     }
-
     /**
      * Ustawia liczbe zarazonych osob
      * @param i liczba zarazonych osob
@@ -88,16 +83,20 @@ public class    Country {
         healthyPopulation = population - infectedPopulation;
         updateInfectedLast14Days(i);
     }
+    public long addInfectedPopulation(){
+        if(healthyPopulation == 0) return 0;
+        long a = (long) (Math.ceil(getInfectedPopulation() * World.virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
+        if(infectedPopulation + a > healthyPopulation){
+            a = healthyPopulation - infectedPopulation;
+            infectedPopulation = population;
+            healthyPopulation = 0;
+            return a;
+        }
+        infectedPopulation += a;
+        healthyPopulation -= a;
+        updateInfectedLast14Days((int)a);
 
-    /**
-     * Dodaje liczbe zarazonych osob
-     * @param i liczba zarazonych osob
-     */
-    public void addInfectedPopulation(int i){
-        infectedPopulation += i;
-        if(infectedPopulation > population) infectedPopulation = population;
-        healthyPopulation = population - infectedPopulation;
-        updateInfectedLast14Days(i);
+        return a;
     }
     /**
      * Ustawia status kraju na zarazony
@@ -109,21 +108,17 @@ public class    Country {
      * @return Status zarazenia kraju
      */
     public boolean getInfectedStatus(){return infected;}
-
     public int getFlightsAmout(){return availableFlights.size();}
     public void addFlight(String flight){availableFlights.add(flight);}
     public int getShipCruisesAmount(){return availableShipCruise.size();}
     public void addShipCruise(String flight){availableShipCruise.add(flight);}
-
     /**
      * Zaraza losowego sasiada
-
      */
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
-        int randomNumber = random.nextInt(population - 1 + 1) + 1;
-        System.out.println();
+        int randomNumber = random.nextInt((int)population - 1 + 1) + 1;
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){
@@ -134,23 +129,24 @@ public class    Country {
             }
         }
     }
-
     /**
      * Funkcja odpowiedzialna za zabijanie zarazonych ludzi.
      *
      * @param people Ludzie, ktorych czesc zostanie zabita.
+     * @return liczba zgonow
      */
-    public int killInfectedPeople(int people){
-        int deaths = (int) (people * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
-        System.out.println(deaths);
+    public long killInfectedPeople(long people){
+        long deaths = (long) (people * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
         if (deadPopulation + deaths < population){
             deadPopulation += deaths;
             infectedPopulation -= deaths;
+            World.deadPopulation += deaths;
         }
         else{
+            long acudeath = population - deadPopulation;
             deadPopulation = population;
+            World.deadPopulation += acudeath;
         }
-        healthyPopulation = population - deadPopulation - infectedPopulation;
         return deaths;
     }
     /**
@@ -158,40 +154,39 @@ public class    Country {
      *
      * @param newInfected nowe zarazone osoby.
      */
-    private void updateInfectedLast14Days(int newInfected){
+    private void updateInfectedLast14Days(long newInfected){
         int index = World.day % 14; // AKTUALNY INDEX
         if(World.day > 14){
             infectedLast14Days[index] += newInfected;
-            int dead = killInfectedPeople(infectedLast14Days[index]); // ZABIJAMY TYCH z INDEXU
+            long dead = killInfectedPeople(infectedLast14Days[index]);
             infectedLast14Days[index] -= dead;
             int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
-            // TYCH CO NIE UDALO SIE ZABIC PRZENOSZE DO NASTEPNEGO DNIA PONIEWAZ SA ZARAZENI DLUZEJ NIZ 14 DNI P.S Dziwnie sie o tym pisze XD
-            // JEDNAK PRZENOSZE TYLKO POLOWE BO SIE BLOKUJE I POLOWA TYCH KTORYCH NIE PRZENIOSLEM BEDZIE ZARAZANA ZA 14 DNI
-            System.out.println(index);
-            int moveInfected = infectedLast14Days[index] / 2;
-
+            long moveInfected = infectedLast14Days[index] / 2;
             infectedLast14Days[nextIndex] += moveInfected;
-            infectedLast14Days[index] = moveInfected;
-            // USUWAM TYCH KTORYCH NIE ZABILEM Z AKTUALNEGO INDEXU PONIEWAZ DODALEM ICH DO NASTEPNEGO DNIA.
-
+            infectedLast14Days[index] = Math.toIntExact((long) moveInfected);
         }
         else{
-            infectedLast14Days[index] = newInfected; // ZAPELNIAM TABLICE 14 dni
+            infectedLast14Days[index] = Math.toIntExact((long) newInfected); // ZAPELNIAM TABLICE 14 dni
         }
     }
-
+    public void killingAfterNotHealthyPopulation(){
+        int index = World.day % 14; // AKTUALNY INDEX
+        long dead = killInfectedPeople((infectedPopulation));
+        infectedLast14Days[index] -= dead;
+        int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
+        long moveInfected = infectedLast14Days[index] / 2;
+        infectedLast14Days[nextIndex] += moveInfected;
+        infectedLast14Days[index] = (int) moveInfected;
+    }
     /**
      * Generuje ArrayListe krajow , ktorzy nie sa zarazeni
      *
      * @return  Lista niezarazonych sasiadow
      */
-    //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
-        System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
-            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
@@ -212,7 +207,6 @@ public class    Country {
         World.infectedCountries.add(this);
         World.virus.addPoint();
     }
-
     public void infectByPlane(){
         Random random = new Random();
         int randomNumber = random.nextInt(100);
@@ -220,14 +214,11 @@ public class    Country {
             randomNumber = random.nextInt(availableFlights.size()) + 1;
             Country newInfected = World.coutriesMap.get(availableFlights.get(randomNumber-1));
             if(!newInfected.getInfectedStatus()){
-                System.out.println("SAMOLOT ZAINFEKOWAL " + newInfected.getName());
+//                System.out.println("SAMOLOT ZAINFEKOWAL " + newInfected.getName());
                 newInfected.newInfectedConfiguration();
-                //KOMUNIKAT W GUI
             }
         }
-
     }
-
     public void infectByShip(){
         Random random = new Random();
         int randomNumber = random.nextInt(100);
@@ -235,9 +226,8 @@ public class    Country {
             randomNumber = random.nextInt(availableShipCruise.size()) + 1;
             Country newInfected = World.coutriesMap.get(availableShipCruise.get(randomNumber-1));
             if(!newInfected.getInfectedStatus()){
-                System.out.println("STATEK ZAINFEKOWAL " + newInfected.getName());
+//                System.out.println("STATEK ZAINFEKOWAL " + newInfected.getName());
                 newInfected.newInfectedConfiguration();
-                //KOMUNIKAT W GUI
             }
         }
     }
