@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-
 /**
  * Klasa reprezentujaca swiat gry.
  */
@@ -26,9 +24,7 @@ public class World {
      */
     public static void setPopulation(long population){
         World.population = population;
-
     }
-
     /**
      * Zwraca populacje swiata.
      *
@@ -37,23 +33,20 @@ public class World {
     public static long getPopulation(){
         return population;
     }
-
     /**
      * Funkcja odpowiedzialna za zarazanie .
      *
-     * @param c Kraj, w w ktorym wystepuje zarazanie.
+     * @param country Kraj, w w ktorym wystepuje zarazanie.
      */
-    //Funkcja odpowiedzialna za proces zrażania w danym kraju
-    static void infectionProcess(Country c){
-        long newInfectedPopulation = c.addInfectedPopulation(); //wylicza ilość nowych zarażonych i ich dodaje
-
-        c.infectYourNeighbor();
-
-        if(virus.getAirplaneStatus() && c.getFlightsAmout()!=0){
-            c.infectByPlane();
+    static void infectionProcess(Country country){
+        long newInfectedPopulation = country.addInfectedPopulation();
+//        country.printInformations();
+        country.infectYourNeighbor();
+        if(virus.getAirplaneStatus() && country.getFlightsAmout()!=0){
+            country.infectByPlane();
         }
-        if(virus.getAirplaneStatus() && c.getShipCruisesAmount()!=0){
-            c.infectByShip();
+        if(virus.getAirplaneStatus() && country.getShipCruisesAmount()!=0){
+            country.infectByShip();
         }
     }
 }

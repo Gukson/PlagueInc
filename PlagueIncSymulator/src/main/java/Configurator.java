@@ -6,7 +6,6 @@ import java.util.*;
  * Klasa Configurator służy do konfiguracji symulatora.
  */
 public class Configurator {
-
     /**
      * Lista prechowujaca kraje.
      */
@@ -20,7 +19,6 @@ public class Configurator {
         readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
         long population = calculateWorldPopulation();
         World.setPopulation(population);
-        System.out.println("XXXXXXXXXX"+population);
     }
 
     /**
@@ -44,7 +42,6 @@ public class Configurator {
                 String[] neighbours = fields[4].split(", ");
                 String populationStr = fields[1].replaceAll("\\s+", "");
                 long population = Integer.parseInt(populationStr);
-                if(Objects.equals(name, "Chiny")) System.out.println("CCCCCC"+population);
                 String avgTempStr = fields[2].replaceAll("[^\\d.-]+", "");
                 double avgTemp = Double.parseDouble(avgTempStr);
                 String climate = fields[3];
@@ -82,14 +79,13 @@ public class Configurator {
                     continue;
                 }
                 String[] temp = line.split(";");
-                System.out.println(temp[0]);
+
                 World.coutriesMap.get(temp[0]).addFlight(temp[1]);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-
     /**
      * Odczytuje informacje o rejsach z podanego pliku
      *
@@ -105,7 +101,6 @@ public class Configurator {
                     continue;
                 }
                 String[] temp = line.split(";");
-                System.out.println(temp[0] + " Statek");
                 World.coutriesMap.get(temp[0]).addShipCruise(temp[1]);
             }
         } catch (FileNotFoundException e) {
@@ -120,12 +115,6 @@ public class Configurator {
     public static void startConfigurator() {
         Configurator gui = new Configurator();
         long worldPopulation = World.getPopulation();
-        System.out.println("WORLD POPULATION " + worldPopulation);
-        for (Country country : gui.countries){
-            System.out.println(country.getName() + "  POPULATION: " + country.getPopulation() + "  NEIGHBOURS : " + country.getNeighbours());
-            String[] Arr = country.getNeighbours();
-            System.out.println(Arr[0]);
-        }
     }
 
 }

@@ -4,7 +4,7 @@
  */
 
 public class Virus {
-    private String virus_name;
+    private final String virus_name;
     private int virus_points;
     public double cheanseForDeath;
     public double cheanseForInfection;
@@ -48,15 +48,27 @@ public class Virus {
     public String getName(){return virus_name;}
 
     /**
-     * Ustawia obecnosc samolotow na true???? DO
+     * Ustawia obecnosc samolotow
      */
     public void setOnAirplane(){airplane=true;}
     /**
-     * Ustawia obecnosc statkow na true ???? DO POPRAWY
+     * Ustawia obecnosc statkow
      */
     public void setOnShip(){ship=true;}
 
+    /**
+     * Zwraca status obecnosci samolotow.
+     *
+     * @return Status obecnosci samolotow.
+     */
+
     public boolean getAirplaneStatus(){return airplane;}
+
+    /**
+     * Zwraca status obecnosci statkow.
+     *
+     * @return Status obecnosci statkow.
+     */
 
     public boolean getShipStatus(){return ship;}
 }
