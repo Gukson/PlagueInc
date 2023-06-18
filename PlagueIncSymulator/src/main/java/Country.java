@@ -193,10 +193,8 @@ public class    Country {
     //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
-//        System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
-//            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
