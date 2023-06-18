@@ -9,7 +9,6 @@ public class Virus {
     public double cheanseForDeath;
     public double cheanseForInfection;
     public double cheanseForInfectedFlight;
-
     public double cheanseForInfectedShipCruise;
     private int virusPoints;
     public int difficulty;

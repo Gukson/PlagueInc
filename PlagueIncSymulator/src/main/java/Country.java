@@ -12,10 +12,10 @@ public class    Country {
     private final String[] neighbours;
     private ArrayList<String> availableFlights;
     private ArrayList<String> availableShipCruise;
-    private final int population;
-    private int healthyPopulation;
-    private int infectedPopulation;
-    private int deadPopulation;
+    private final long population;
+    private long healthyPopulation;
+    private long infectedPopulation;
+    private long deadPopulation;
     private int[] infectedLast14Days;
 
 
@@ -28,7 +28,7 @@ public class    Country {
      * @param climate    Klimat
      * @param neighbour  Tablica sąsiadów kraju
      */
-    public Country(String name, int population, double avgTemp, String climate, String[] neighbour) {
+    public Country(String name, long population, double avgTemp, String climate, String[] neighbour) {
         this.CountryName = name;
         this.population = population;
         this.temperature = (float) avgTemp;
@@ -43,25 +43,25 @@ public class    Country {
      * Zwraca populacje kraju.
      * @return Populacja kraju.
      */
-    public int getPopulation(){
+    public long getPopulation(){
         return population;
     }
     /**
      * Zwraca liczbe zdrowych osob w kraju
      * @return Liczba zdrowych osob
      */
-    public int getHealthyPopulation(){return healthyPopulation;}
+    public long getHealthyPopulation(){return healthyPopulation;}
 
     /**
      * Zwraca liczbe chorych osob w kraju
      * @return Liczba chorych osob
      */
-    public int getInfectedPopulation(){return infectedPopulation;}
+    public long getInfectedPopulation(){return infectedPopulation;}
     /**
      * Zwraca liczbe martwych osob w kraju
      * @return Liczba martwych osob
      */
-    public int getDeadPopulation(){return deadPopulation;}
+    public long getDeadPopulation(){return deadPopulation;}
 
     /**
      * Zwraca nazwe kraju
@@ -89,15 +89,20 @@ public class    Country {
         updateInfectedLast14Days(i);
     }
 
-    /**
-     * Dodaje liczbe zarazonych osob
-     * @param i liczba zarazonych osob
-     */
-    public void addInfectedPopulation(int i){
-        infectedPopulation += i;
-        if(infectedPopulation > population) infectedPopulation = population;
-        healthyPopulation = population - infectedPopulation;
-        updateInfectedLast14Days(i);
+    public long addInfectedPopulation(){
+        if(healthyPopulation == 0) return 0;
+        long a = (long) (Math.ceil(getInfectedPopulation() * World.virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
+        if(infectedPopulation + a > healthyPopulation){
+            a = healthyPopulation - infectedPopulation;
+            infectedPopulation = population;
+            healthyPopulation = 0;
+            return a;
+        }
+        infectedPopulation += a;
+        healthyPopulation -= a;
+        updateInfectedLast14Days((int)a);
+
+        return a;
     }
     /**
      * Ustawia status kraju na zarazony
@@ -122,8 +127,8 @@ public class    Country {
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
-        int randomNumber = random.nextInt(population - 1 + 1) + 1;
-        System.out.println();
+        int randomNumber = random.nextInt((int)population - 1 + 1) + 1;
+//        System.out.println();
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){
@@ -188,10 +193,10 @@ public class    Country {
     //Funckja generuje Arraylistę nie zarażonych sąsiadów
     private ArrayList<Country> notInfectedNeighbours(){
         ArrayList<Country> notInfected = new ArrayList<Country>();
-        System.out.println(neighbours);
+//        System.out.println(neighbours);
         for(String c: neighbours){
             Country tempCountry = World.coutriesMap.get(c);
-            System.out.println(c);
+//            System.out.println(c);
             if(!tempCountry.getInfectedStatus()) notInfected.add(tempCountry);
         }
         return notInfected;
