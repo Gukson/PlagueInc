@@ -125,7 +125,6 @@ public class    Country {
                 randomNumber = random.nextInt( notInfected.size());
                 Country newInfected = notInfected.get(randomNumber);
                 newInfected.newInfectedConfiguration();
-
             }
         }
     }
@@ -136,7 +135,7 @@ public class    Country {
      * @return liczba zgonow
      */
     public long killInfectedPeople(long people){
-        long deaths = (long) (people * 0.1); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
+        long deaths = (long) (people * World.virus.cheanseForDeath); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
         if (deadPopulation + deaths < population){
             deadPopulation += deaths;
             infectedPopulation -= deaths;

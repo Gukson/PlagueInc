@@ -10,9 +10,9 @@ public class GUI extends JFrame{
     private final int width = 1200;
     private final int height = 675;
     JLabel lHealthyPopulation, lInfectedPopulation, lDeadPopulation;
+    JTextArea tHealtyCoutries, tInfectedCountries, tDeadCoutries;
     JButton bNewGame,bLoad,bExit, bPlay;
-    public static JTextField tName;
-    JPanel pMainPage;
+    JScrollPane spHealthy, spInfected, spdead;
     static JPanel pNewGame;
     static JPanel pGameGUI;
     /**
@@ -36,14 +36,51 @@ public class GUI extends JFrame{
         setResizable(false);
         setLayout(null);
         setVisible(true);
+
         lHealthyPopulation = new JLabel("");
-        lHealthyPopulation.setBounds(20, 70, 150,50);
+        lHealthyPopulation.setBounds(20, 40, 400,100);
         lHealthyPopulation.setFont(new Font("SansSerif",Font.PLAIN,24));
-        lInfectedPopulation = new JLabel("");
-        lInfectedPopulation.setBounds(20, 90, 150,100);
-        lInfectedPopulation.setFont(new Font("SansSerif",Font.PLAIN,24));
         add(lHealthyPopulation);
+
+        lInfectedPopulation = new JLabel("");
+        lInfectedPopulation.setBounds(20, 70, 400,100);
+        lInfectedPopulation.setFont(new Font("SansSerif",Font.PLAIN,24));
         add(lInfectedPopulation);
+
+        lDeadPopulation = new JLabel("");
+        lDeadPopulation.setBounds(20, 100, 400,100);
+        lDeadPopulation.setFont(new Font("SansSerif",Font.PLAIN,24));
+        add(lDeadPopulation);
+
+        tHealtyCoutries = new JTextArea("");
+        tHealtyCoutries.setEditable(false);
+        tHealtyCoutries.setLineWrap(true);
+        tHealtyCoutries.setWrapStyleWord(true);
+        tHealtyCoutries.setFont(new Font("SansSerif",Font.PLAIN,15));
+        spHealthy = new JScrollPane(tHealtyCoutries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        spHealthy.setBounds(20,300,300,300);
+        add(spHealthy);
+
+        tInfectedCountries = new JTextArea("");
+        tInfectedCountries.setEditable(false);
+        tInfectedCountries.setLineWrap(true);
+        tInfectedCountries.setWrapStyleWord(true);
+        tInfectedCountries.setFont(new Font("SansSerif",Font.PLAIN,15));
+        spInfected = new JScrollPane(tInfectedCountries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        spInfected.setBounds(350,300,300,300);
+        add(spInfected);
+
+        tDeadCoutries = new JTextArea("");
+        tDeadCoutries.setEditable(false);
+        tDeadCoutries.setLineWrap(true);
+        tDeadCoutries.setWrapStyleWord(true);
+        tDeadCoutries.setFont(new Font("SansSerif",Font.PLAIN,15));
+        spdead = new JScrollPane(tDeadCoutries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        spdead.setBounds(700,300,300,300);
+        add(spdead);
+
+
+
         World.day = 1;
         World.infectedPopulation = 0;
         World.healthyPopulation = World.population;
@@ -51,7 +88,22 @@ public class GUI extends JFrame{
         World.virus = new Virus("Wirus");
         Country firstInfected = World.coutriesMap.get("Niemcy");
         firstInfected.newInfectedConfiguration();
+        String healthyCoutries, infectedCoutries, deadCoutries;
         while( World.deadPopulation < World.population){
+            healthyCoutries = "";
+            infectedCoutries = "";
+            deadCoutries = "";
+            for(Country c: Configurator.countries){
+                healthyCoutries += c.getName() + ": " + c.getHealthyPopulation() + " (" + Math.round((float) c.getHealthyPopulation() / c.getPopulation() * 100) + "%)\n";
+            }
+            tHealtyCoutries.setText(healthyCoutries);
+            for(Country c: World.infectedCountries){
+                infectedCoutries += c.getName() + ": " + c.getInfectedPopulation() + " (" + Math.round((float) c.getInfectedPopulation() / c.getPopulation() * 100) + "%)\n";
+                deadCoutries += c.getName() + ": " + c.getDeadPopulation() + " (" + Math.round((float) c.getDeadPopulation() / c.getPopulation() * 100) + "%)\n";
+            }
+            tInfectedCountries.setText(infectedCoutries);
+            tDeadCoutries.setText(deadCoutries);
+
             for(int x = 0; x< World.infectedCountries.size(); x++){
                 Country c = World.infectedCountries.get(x);
                 World.infectionProcess(c);
@@ -63,8 +115,10 @@ public class GUI extends JFrame{
             World.infectedPopulation = suma;
             long healtyPopulation = World.population - World.infectedPopulation;
             World.healthyPopulation = World.getPopulation() - suma;
-            lHealthyPopulation.setText(Long.toString(   healtyPopulation));
-            lInfectedPopulation.setText(Long.toString(World.infectedPopulation));
+            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
+            lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+            lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
+
             if(World.healthyPopulation == 0) {
                 List<Country> infectedCountries;
                 infectedCountries = new ArrayList<>(World.infectedCountries);
@@ -76,13 +130,15 @@ public class GUI extends JFrame{
                         if(randomCountry.getPopulation() <= randomCountry.getDeadPopulation()){
                             infectedCountries.remove(randomIndex);
                         }
+                        lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
+                        Thread.sleep(10);
                     }
             }
             System.out.println(World.deadPopulation);
             repaint();
             if(World.day%30 == 0)World.virus.addPoint();
             World.day++;
-            Thread.sleep(1);
+            Thread.sleep(300);
         }
     }
 }
