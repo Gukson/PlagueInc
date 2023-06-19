@@ -89,7 +89,7 @@ public class GUI extends JFrame{
         Country firstInfected = World.coutriesMap.get("Niemcy");
         firstInfected.newInfectedConfiguration();
         String healthyCoutries, infectedCoutries, deadCoutries;
-        while( World.deadPopulation < World.population){
+        while( World.deadPopulation != World.population && World.infectedCountries.size() > 0){
             healthyCoutries = "";
             infectedCoutries = "";
             deadCoutries = "";
@@ -103,42 +103,36 @@ public class GUI extends JFrame{
             }
             tInfectedCountries.setText(infectedCoutries);
             tDeadCoutries.setText(deadCoutries);
-
             for(int x = 0; x< World.infectedCountries.size(); x++){
                 Country c = World.infectedCountries.get(x);
                 World.infectionProcess(c);
             }
+            List<Country> infectedCountries;
+            infectedCountries = new ArrayList<>(World.infectedCountries);
+            Random random = new Random();
+            int randomIndex = random.nextInt(infectedCountries.size());
+            Country randomCountry = infectedCountries.get(randomIndex);
+            if(infectedCountries.size() > 0 && randomCountry.getHealthyPopulation() == 0) {
+                randomCountry.killingAfterNotHealthyPopulation();
+                randomCountry.printInformations();
+            }
+            if(randomCountry.getHealthyPopulation() ==  0 ){
+                infectedCountries.remove(randomIndex);
+            }
+            System.out.println(World.infectedCountries.size());
+            System.out.println(World.population);
             long suma = 0;
             for(Country x: World.infectedCountries){
                 suma += x.getInfectedPopulation();
             }
             World.infectedPopulation = suma;
-            long healtyPopulation = World.population - World.infectedPopulation;
-            World.healthyPopulation = World.getPopulation() - suma;
-            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
-            lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
             lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
-
-            if(World.healthyPopulation == 0) {
-                List<Country> infectedCountries;
-                infectedCountries = new ArrayList<>(World.infectedCountries);
-                Random random = new Random();
-                    while (infectedCountries.size() > 0){
-                        int randomIndex = random.nextInt(infectedCountries.size());
-                        Country randomCountry = infectedCountries.get(randomIndex);
-                        randomCountry.killingAfterNotHealthyPopulation();
-                        if(randomCountry.getPopulation() <= randomCountry.getDeadPopulation()){
-                            infectedCountries.remove(randomIndex);
-                        }
-                        lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
-                        Thread.sleep(10);
-                    }
-            }
-            System.out.println(World.deadPopulation);
+            lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
             repaint();
             if(World.day%30 == 0)World.virus.addPoint();
             World.day++;
-            Thread.sleep(300);
+            Thread.sleep(0);
         }
     }
 }
