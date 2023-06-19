@@ -144,8 +144,9 @@ public class    Country {
         }
         else{
             long acudeath = population - deadPopulation;
-            infectedPopulation -=acudeath;
             deadPopulation = population;
+            healthyPopulation = 0;
+            infectedPopulation = 0;
             World.deadPopulation += acudeath;
         }
         return deaths;
@@ -154,15 +155,24 @@ public class    Country {
      * Funkcja odpowiadajaca za uzupelnianie tablicy osobami zarazonymi w ciagu 14 dni.
      *
      */
-    public void killingAfterNotHealthyPopulation(){
+    public void killingHealthyPopulation(){
+        long sum = 0;
         int index = World.day % 14; // AKTUALNY INDEX
-        long dead = killInfectedPeople((infectedPopulation));
-        infectedLast14Days[index] -= dead;
         int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
-        long moveInfected = infectedLast14Days[index] / 2;
+        for (int i =0 ;i<14;i++){
+            sum += infectedLast14Days[i];
+        }
+        if(World.day > 14){
+        long dead = killInfectedPeople((infectedLast14Days[index]));
+        infectedLast14Days[index] -= dead;
+        long moveInfected = infectedLast14Days[index];
         infectedLast14Days[nextIndex] += moveInfected;
-        infectedLast14Days[index] = moveInfected ;
+        infectedLast14Days[index] = infectedPopulation - sum;
+        }
+
     }
+
+
     /**
      * Generuje ArrayListe krajow , ktorzy nie sa zarazeni
      *

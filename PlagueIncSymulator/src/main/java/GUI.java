@@ -93,6 +93,26 @@ public class GUI extends JFrame{
             healthyCoutries = "";
             infectedCoutries = "";
             deadCoutries = "";
+            for(int x = 0; x< World.infectedCountries.size(); x++){
+                Country c = World.infectedCountries.get(x);
+                World.infectionProcess(c);
+            }
+
+
+
+
+
+
+            List<Country> infectedCountries;
+            infectedCountries = new ArrayList<>(World.infectedCountries);
+            for(Country country: infectedCountries){
+                country.killingHealthyPopulation();
+            }
+            Thread.sleep(100);
+
+
+
+
             for(Country c: Configurator.countries){
                 healthyCoutries += c.getName() + ": " + c.getHealthyPopulation() + " (" + Math.round((float) c.getHealthyPopulation() / c.getPopulation() * 100) + "%)\n";
             }
@@ -103,36 +123,21 @@ public class GUI extends JFrame{
             }
             tInfectedCountries.setText(infectedCoutries);
             tDeadCoutries.setText(deadCoutries);
-            for(int x = 0; x< World.infectedCountries.size(); x++){
-                Country c = World.infectedCountries.get(x);
-                World.infectionProcess(c);
-            }
-            List<Country> infectedCountries;
-            infectedCountries = new ArrayList<>(World.infectedCountries);
-            Random random = new Random();
-            int randomIndex = random.nextInt(infectedCountries.size());
-            Country randomCountry = infectedCountries.get(randomIndex);
-            if(infectedCountries.size() > 0 && randomCountry.getHealthyPopulation() == 0) {
-                randomCountry.killingAfterNotHealthyPopulation();
-                randomCountry.printInformations();
-            }
-            if(randomCountry.getHealthyPopulation() ==  0 ){
-                infectedCountries.remove(randomIndex);
-            }
-            System.out.println(World.infectedCountries.size());
-            System.out.println(World.population);
             long suma = 0;
             for(Country x: World.infectedCountries){
                 suma += x.getInfectedPopulation();
             }
             World.infectedPopulation = suma;
-            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
+            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
             lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
             lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+
             repaint();
             if(World.day%30 == 0)World.virus.addPoint();
             World.day++;
             Thread.sleep(0);
+            System.out.println("DAY" + World.day
+            );
         }
     }
 }

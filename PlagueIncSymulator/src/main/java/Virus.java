@@ -20,7 +20,7 @@ public class Virus {
      */
     public Virus(String Name){
         this.virus_name = Name;
-        cheanseForDeath = 0.1;
+        cheanseForDeath = 0.05;
         cheanseForInfection = 0.1;
         cheanseForInfectedFlight = 10;
         virusPoints = 0;
