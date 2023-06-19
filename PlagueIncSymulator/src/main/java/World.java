@@ -39,7 +39,7 @@ public class World {
      * @param country Kraj, w w ktorym wystepuje zarazanie.
      */
     static void infectionProcess(Country country){
-        country.addInfectedPopulation();
+        long newInfectedPopulation = country.addInfectedPopulation();
 //        country.printInformations();
         country.infectYourNeighbor();
         if(virus.getAirplaneStatus() && country.getFlightsAmout()!=0){

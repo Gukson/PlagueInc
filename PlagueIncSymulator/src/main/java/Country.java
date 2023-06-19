@@ -83,16 +83,20 @@ public class    Country {
         healthyPopulation = population - infectedPopulation;
 
     }
-    public void addInfectedPopulation(){
-        if(healthyPopulation == 0) return ;
+    public long addInfectedPopulation(){
+        if(healthyPopulation == 0) return 0;
         long a = (long) (Math.ceil(getInfectedPopulation() * World.virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
         if(infectedPopulation + a > healthyPopulation){
             a = healthyPopulation - infectedPopulation;
             infectedPopulation = population;
             healthyPopulation = 0;
+            return a;
         }
         infectedPopulation += a;
         healthyPopulation -= a;
+
+
+        return a;
     }
     /**
      * Ustawia status kraju na zarazony
