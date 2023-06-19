@@ -155,13 +155,7 @@ public class    Country {
      *
      */
     public void killingAfterNotHealthyPopulation(){
-        int index = World.day % 14; // AKTUALNY INDEX
-        long dead = killInfectedPeople((infectedPopulation));
-        infectedLast14Days[index] -= dead;
-        int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
-        long moveInfected = infectedLast14Days[index] / 2;
-        infectedLast14Days[nextIndex] += moveInfected;
-        infectedLast14Days[index] = moveInfected ;
+        killInfectedPeople((infectedPopulation));
     }
     /**
      * Generuje ArrayListe krajow , ktorzy nie sa zarazeni
