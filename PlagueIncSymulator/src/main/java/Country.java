@@ -151,7 +151,7 @@ public class    Country {
         return deaths;
     }
     /**
-     * Funkcja odpowiadajaca za uzupelnianie tablicy osobami zarazonymi w ciagu 14 dni.
+     * Funkcja odpowiadajaca za przesylanie ilosci osob zarazonych do funkcji killInfectedPeople(people)
      *
      */
     public void killingAfterNotHealthyPopulation(){
