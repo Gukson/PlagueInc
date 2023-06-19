@@ -87,7 +87,7 @@ public class GUI extends JFrame{
         World.infectedCountries = new ArrayList<>();
         World.virus = new Virus("Wirus");
         Country firstInfected = World.coutriesMap.get("Niemcy");
-        firstInfected.newInfectedConfiguration();
+        Infection.newInfectedConfiguration(firstInfected);
         String healthyCoutries, infectedCoutries, deadCoutries;
         while( World.deadPopulation != World.population && World.infectedCountries.size() > 0){
             healthyCoutries = "";
