@@ -163,11 +163,11 @@ public class    Country {
             sum += infectedLast14Days[i];
         }
         if(World.day > 14){
-        long dead = killInfectedPeople((infectedLast14Days[index]));
-        infectedLast14Days[index] -= dead;
-        long moveInfected = infectedLast14Days[index];
-        infectedLast14Days[nextIndex] += moveInfected;
-        infectedLast14Days[index] = infectedPopulation - sum;
+            long dead = killInfectedPeople((infectedLast14Days[index]));
+            infectedLast14Days[index] -= dead;
+            long moveInfected = infectedLast14Days[index];
+            infectedLast14Days[nextIndex] += moveInfected;
+            infectedLast14Days[index] = infectedPopulation - sum;
         }
 
     }
