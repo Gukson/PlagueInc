@@ -16,7 +16,7 @@ public class    Country {
     private long healthyPopulation;
     private long infectedPopulation;
     private long deadPopulation;
-    private int[] infectedLast14Days;
+    private long[] infectedLast14Days;
     /**
      * Konstruktor klasy Country.
      *
@@ -35,7 +35,7 @@ public class    Country {
         this.healthyPopulation = population;
         availableFlights = new ArrayList<String>();
         availableShipCruise = new ArrayList<String>();
-        infectedLast14Days = new int[14];
+        infectedLast14Days = new long[14];
     }
     /**
      * Zwraca populacje kraju.
@@ -81,7 +81,7 @@ public class    Country {
         infectedPopulation = i;
         if(infectedPopulation > population) infectedPopulation = population;
         healthyPopulation = population - infectedPopulation;
-        updateInfectedLast14Days(i);
+
     }
     public long addInfectedPopulation(){
         if(healthyPopulation == 0) return 0;
@@ -94,7 +94,7 @@ public class    Country {
         }
         infectedPopulation += a;
         healthyPopulation -= a;
-        updateInfectedLast14Days((int)a);
+
 
         return a;
     }
@@ -102,6 +102,7 @@ public class    Country {
      * Ustawia status kraju na zarazony
      */
     public void setStatusInfected(){infected=true;}
+
 
     /**
      * Zwraca staatus zarazenia kraju
@@ -135,7 +136,7 @@ public class    Country {
      * @return liczba zgonow
      */
     public long killInfectedPeople(long people){
-        long deaths = (long) (people * World.virus.cheanseForDeath); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
+        long deaths = (long) (Math.ceil(people * World.virus.cheanseForDeath)); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
         if (deadPopulation + deaths < population){
             deadPopulation += deaths;
             infectedPopulation -= deaths;
@@ -143,6 +144,7 @@ public class    Country {
         }
         else{
             long acudeath = population - deadPopulation;
+            infectedPopulation -=acudeath;
             deadPopulation = population;
             World.deadPopulation += acudeath;
         }
@@ -151,23 +153,7 @@ public class    Country {
     /**
      * Funkcja odpowiadajaca za uzupelnianie tablicy osobami zarazonymi w ciagu 14 dni.
      *
-     * @param newInfected nowe zarazone osoby.
      */
-    private void updateInfectedLast14Days(long newInfected){
-        int index = World.day % 14; // AKTUALNY INDEX
-        if(World.day > 14){
-            infectedLast14Days[index] += newInfected;
-            long dead = killInfectedPeople(infectedLast14Days[index]);
-            infectedLast14Days[index] -= dead;
-            int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
-            long moveInfected = infectedLast14Days[index] / 2;
-            infectedLast14Days[nextIndex] += moveInfected;
-            infectedLast14Days[index] = Math.toIntExact((long) moveInfected);
-        }
-        else{
-            infectedLast14Days[index] = Math.toIntExact((long) newInfected); // ZAPELNIAM TABLICE 14 dni
-        }
-    }
     public void killingAfterNotHealthyPopulation(){
         int index = World.day % 14; // AKTUALNY INDEX
         long dead = killInfectedPeople((infectedPopulation));
@@ -175,7 +161,7 @@ public class    Country {
         int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
         long moveInfected = infectedLast14Days[index] / 2;
         infectedLast14Days[nextIndex] += moveInfected;
-        infectedLast14Days[index] = (int) moveInfected;
+        infectedLast14Days[index] = moveInfected ;
     }
     /**
      * Generuje ArrayListe krajow , ktorzy nie sa zarazeni
