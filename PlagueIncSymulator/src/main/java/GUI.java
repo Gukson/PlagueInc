@@ -126,7 +126,7 @@ public class GUI extends JFrame{
                 suma += x.getInfectedPopulation();
             }
             World.infectedPopulation = suma;
-            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
+            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation - World.infectedPopulation) + " (" + Math.round((float) World.healthyPopulation / World.population * 100) + "%)");
             lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
             lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
             repaint();
