@@ -1,3 +1,4 @@
+import javax.lang.model.element.Name;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -148,6 +149,7 @@ public class    Country {
             healthyPopulation = 0;
             infectedPopulation = 0;
             World.deadPopulation += acudeath;
+            return 0;
         }
         return deaths;
     }
