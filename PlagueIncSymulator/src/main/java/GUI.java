@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Klasa GUI reprezentujaca interfejs graficzny symulacji.
@@ -224,7 +225,9 @@ public class GUI extends JFrame implements ActionListener {
         World.healthyPopulation = World.population;
         World.infectedCountries = new ArrayList<>();
         World.virus = new Virus("Wirus");
-        Country firstInfected = World.coutriesMap.get("Niemcy");
+        Random random = new Random();
+        int randomNumber = random.nextInt(Configurator.countries.size()) + 1;
+        Country firstInfected = World.coutriesMap.get(Configurator.countries.get(randomNumber-1).getName());
         firstInfected.newInfectedConfiguration();
         String healthyCoutries, infectedCoutries, deadCoutries;
         while( World.deadPopulation != World.population && World.infectedCountries.size() > 0){
@@ -312,7 +315,7 @@ public class GUI extends JFrame implements ActionListener {
             lVirusLevel.setText("(" + infectingLvl +"/3)");
             lVirusUpgradePrize.setText(needToUpgradeInfecting+"vP to upgrade");
             World.virus.setCheanseForInfection(World.virus.getCheanseForInfection() + 0.05);
-            if(infectingLvl == 3)lVirusUpgradePrize.setText("max upgraded");
+            if(infectingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
         }
         else if (source == bDeath && killingLvl<5 && World.virus.getPoints() >= needToUpgradeKilling) {
             World.virus.setPoints(World.virus.getPoints() - needToUpgradeKilling);
@@ -321,7 +324,7 @@ public class GUI extends JFrame implements ActionListener {
             lDeadLvl.setText("(" + killingLvl +"/5)");
             lDeadUpgradePrize.setText(needToUpgradeKilling+"vP to upgrade");
             World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.01);
-            if(killingLvl == 3)lVirusUpgradePrize.setText("max upgraded");
+            if(killingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
         }
     }
 }

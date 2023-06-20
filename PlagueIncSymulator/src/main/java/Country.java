@@ -86,7 +86,7 @@ public class    Country {
     }
     public long addInfectedPopulation(){
         if(healthyPopulation == 0) return 0;
-        long a = (long) (Math.ceil(getInfectedPopulation() * World.virus.cheanseForInfection)); //wylicza ilość nowych zarażonych
+        long a = (long) (Math.ceil(getInfectedPopulation() * (World.virus.cheanseForInfection))); //wylicza ilość nowych zarażonych
         if(infectedPopulation + a > healthyPopulation){
             a = healthyPopulation - infectedPopulation;
             infectedPopulation = population;
@@ -95,7 +95,6 @@ public class    Country {
         }
         infectedPopulation += a;
         healthyPopulation -= a;
-
 
         return a;
     }
