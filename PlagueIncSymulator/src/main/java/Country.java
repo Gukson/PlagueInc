@@ -110,9 +110,26 @@ public class    Country {
      * @return Status zarazenia kraju
      */
     public boolean getInfectedStatus(){return infected;}
+    /**
+     * Zwraca liczbe lotow
+     * @return Liczba lotowe
+     */
     public int getFlightsAmout(){return availableFlights.size();}
+    /**
+     * Dodaje lot
+     * @return nowy lot
+     */
+
     public void addFlight(String flight){availableFlights.add(flight);}
+    /**
+     * Dodaje liczbe rejsow
+     * @return rejs
+     */
     public int getShipCruisesAmount(){return availableShipCruise.size();}
+    /**
+     * Dodaje rejs
+     * @return rejs
+     */
     public void addShipCruise(String flight){availableShipCruise.add(flight);}
     /**
      * Zaraza losowego sasiada
@@ -155,6 +172,7 @@ public class    Country {
     }
     /**
      * Funkcja odpowiadajaca za uzupelnianie tablicy osobami zarazonymi w ciagu 14 dni.
+     * Funkcja odpowiada za przesylanie ilosci zabitych osob do funkcji z zabijaniem
      *
      */
     public void killingHealthyPopulation(){
@@ -189,21 +207,18 @@ public class    Country {
         return notInfected;
     }
     /**
-     * Wyswietla informacje o kraju.
+     * Funkcja odpowiadajaca za dodawanie zainfekowanego kraju do tablicy zainfekowanych krajow.
      */
-    public void printInformations(){
-        System.out.println("Nazwa Kraju: "+ getName());
-        System.out.println("Populacja: "+ population);
-        System.out.println("Zarazeni: "+ infectedPopulation);
-        System.out.println("Death: " + deadPopulation);
-        System.out.println();
-    }
+
     public void newInfectedConfiguration(){
         setStatusInfected();
         setInfectedPopulation(1);
         World.infectedCountries.add(this);
         World.virus.addPoint();
     }
+    /**
+     * Funkcja odpowiadajaca za infekowanie samolotem
+     */
     public void infectByPlane(){
         Random random = new Random();
         int randomNumber = random.nextInt(100);
@@ -211,11 +226,13 @@ public class    Country {
             randomNumber = random.nextInt(availableFlights.size()) + 1;
             Country newInfected = World.coutriesMap.get(availableFlights.get(randomNumber-1));
             if(!newInfected.getInfectedStatus()){
-//                System.out.println("SAMOLOT ZAINFEKOWAL " + newInfected.getName());
                 newInfected.newInfectedConfiguration();
             }
         }
     }
+    /**
+     * Funkcja odpowiadajaca za infekowanie statkiem
+     */
     public void infectByShip(){
         Random random = new Random();
         int randomNumber = random.nextInt(100);
@@ -223,7 +240,6 @@ public class    Country {
             randomNumber = random.nextInt(availableShipCruise.size()) + 1;
             Country newInfected = World.coutriesMap.get(availableShipCruise.get(randomNumber-1));
             if(!newInfected.getInfectedStatus()){
-//                System.out.println("STATEK ZAINFEKOWAL " + newInfected.getName());
                 newInfected.newInfectedConfiguration();
             }
         }
