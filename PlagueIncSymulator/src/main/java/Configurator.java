@@ -18,6 +18,7 @@ public class Configurator {
         readInfoAboutFlights("PlagueIncSymulator/Data/flights.csv");
         readInfoAboutSeaCruise("PlagueIncSymulator/Data/sea_cruise.csv");
         long population = calculateWorldPopulation();
+        World.time = 420;
         World.setPopulation(population);
     }
 
@@ -116,5 +117,4 @@ public class Configurator {
         Configurator gui = new Configurator();
         long worldPopulation = World.getPopulation();
     }
-
 }

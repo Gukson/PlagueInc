@@ -11,6 +11,7 @@ public class World {
     public static long healthyPopulation;
     public static long deadPopulation;
     public static Virus virus;
+    public static int time;
     public static ArrayList<Country> infectedCountries;
     public static HashMap<String,Country> coutriesMap;
     public static ArrayList<String> flightsArrayList;
@@ -48,5 +49,9 @@ public class World {
         if(virus.getAirplaneStatus() && country.getShipCruisesAmount()!=0){
             country.infectByShip();
         }
+    }
+    public static void speedup_time(){
+        if(time - 140 <= 0) time = 420;
+        else time-=140;
     }
 }

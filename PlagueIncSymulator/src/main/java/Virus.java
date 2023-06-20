@@ -28,8 +28,10 @@ public class Virus {
         ship = true;
     }
 
+    public void setPoints(int a){virusPoints = a;}
+
     /**
-     * Zwieksza liczbe zarazonych
+     * Dodaje liczbę puktów
      *
      */
     public void addPoint(){virusPoints++;}
@@ -37,7 +39,7 @@ public class Virus {
     /**
      * Zwraca liczbe zarazonych
      *
-     * @return  Liczba zarazonych
+     * @return  liczbę punktów
      */
     public int getPoints(){return virusPoints;}
     /**
