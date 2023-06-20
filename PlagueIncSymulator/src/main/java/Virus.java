@@ -13,6 +13,7 @@ public class Virus {
     private int virusPoints;
     private boolean airplane, ship;
 
+
     /**
      * Konstruktor klasy Wirus
      * @param Name nazwa Wirusa

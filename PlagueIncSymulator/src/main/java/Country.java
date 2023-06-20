@@ -18,6 +18,7 @@ public class    Country {
     private long infectedPopulation;
     private long deadPopulation;
     private long[] infectedLast14Days;
+    private int virusedDay;
     /**
      * Konstruktor klasy Country.
      *
@@ -37,6 +38,7 @@ public class    Country {
         availableFlights = new ArrayList<String>();
         availableShipCruise = new ArrayList<String>();
         infectedLast14Days = new long[14];
+        virusedDay = 0;
     }
     /**
      * Zwraca populacje kraju.
@@ -134,7 +136,7 @@ public class    Country {
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
-        int randomNumber = random.nextInt((int)(population*0.2)) + 1;
+        int randomNumber = random.nextInt((int)(population*0.01)) + 1;
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){
@@ -179,14 +181,18 @@ public class    Country {
         for (int i =0 ;i<14;i++){
             sum += infectedLast14Days[i];
         }
+        if(World.virus.getCheanseForDeath() > 0) {
+            virusedDay ++;
+        }
         if(World.day > 14){
+            if(virusedDay >=14){
             long dead = killInfectedPeople((infectedLast14Days[index]));
             infectedLast14Days[index] -= dead;
+            }
             long moveInfected = infectedLast14Days[index];
             infectedLast14Days[nextIndex] += moveInfected;
             infectedLast14Days[index] = infectedPopulation - sum;
         }
-
     }
 
 
