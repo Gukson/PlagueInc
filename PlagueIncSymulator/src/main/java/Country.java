@@ -137,7 +137,7 @@ public class    Country {
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
-        int randomNumber = random.nextInt((int)population - 1 + 1) + 1;
+        int randomNumber = random.nextInt((int)(population*0.2)) + 1;
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){

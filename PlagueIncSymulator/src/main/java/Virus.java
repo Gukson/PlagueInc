@@ -11,7 +11,6 @@ public class Virus {
     public double cheanseForInfectedFlight;
     public double cheanseForInfectedShipCruise;
     private int virusPoints;
-    public int difficulty;
     private boolean airplane, ship;
 
     /**
@@ -20,14 +19,39 @@ public class Virus {
      */
     public Virus(String Name){
         this.virus_name = Name;
-        cheanseForDeath = 0.05;
+        cheanseForDeath = 0;
         cheanseForInfection = 0.1;
         cheanseForInfectedFlight = 10;
         virusPoints = 0;
-        airplane = true;
-        ship = true;
+        airplane = false;
+        ship = false;
     }
-
+    /**
+     * Ustawia szansę na zabicie
+     *
+     */
+    public void setCheanseForDeath(double a){cheanseForDeath=a;}
+    /**
+     * Zwraca szanse na zabicie
+     *
+     * @return szansa na zabicie
+     */
+    public double getCheanseForDeath(){return cheanseForDeath;}
+    /**
+     * Ustawia szansę na zarażenie
+     *
+     */
+    public void setCheanseForInfection(double a){cheanseForInfection=a;}
+    /**
+     * Zwraca szanse na zarażenie
+     *
+     * @return szansa na zarażenie
+     */
+    public double getCheanseForInfection(){return cheanseForInfection;}
+    /**
+     * Ustawia liczbę punktów
+     *
+     */
     public void setPoints(int a){virusPoints = a;}
 
     /**

@@ -41,7 +41,6 @@ public class World {
      */
     static void infectionProcess(Country country){
         long newInfectedPopulation = country.addInfectedPopulation();
-//        country.printInformations();
         country.infectYourNeighbor();
         if(virus.getAirplaneStatus() && country.getFlightsAmout()!=0){
             country.infectByPlane();

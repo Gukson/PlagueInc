@@ -11,11 +11,13 @@ import java.util.List;
 public class GUI extends JFrame implements ActionListener {
     private final int width = 1200;
     private final int height = 675;
-    JLabel lHealthyPopulation, lInfectedPopulation, lDeadPopulation, lDay, lHealthy, lInfected, lDead, lPoints;
+    JLabel lHealthyPopulation, lInfectedPopulation, lDeadPopulation, lDay, lHealthy, lInfected, lDead, lPoints,
+            lPlaneStatus, lShipStatus, lTimeSpeed, lPlanePrize, lShipPrize, lVirusLevel, lVirusUpgradePrize,lDeadLvl,lDeadUpgradePrize;
     JTextArea tHealtyCoutries, tInfectedCountries, tDeadCoutries;
-    int timelvl = 1;
-    ImageIcon lvl1,lvl2,lvl3;
-    JButton bTime;
+    int timeLvl = 1, killingLvl = 0, infectingLvl = 1, needToUpgradeInfecting = 5, needToUpgradeKilling = 7;
+    boolean airPlane = false, ship = false;
+    ImageIcon iTimeSpeed1, iTimeSpeed2, iTimeSpeed3, iAirPlane, iShip, iVirus, iDeath;
+    JButton bTime, bAirPlane, bShip, bVirus, bDeath;
     JScrollPane spHealthy, spInfected, spdead;
 
     /**
@@ -39,34 +41,123 @@ public class GUI extends JFrame implements ActionListener {
         setResizable(false);
         setLayout(null);
         setVisible(true);
-        lvl1 = new ImageIcon("PlagueIncSymulator/Data/Images/9057079_play_button_icon.png");
-        lvl2 = new ImageIcon("PlagueIncSymulator/Data/Images/7754971_media player_button_speed_fast_arrow_icon.png");
-        lvl3 = new ImageIcon("PlagueIncSymulator/Data/Images/9034563_track_next_icon.png");
 
-        bTime = new JButton(lvl1);
+
+        //IMAGEICONS
+        iDeath = new ImageIcon("PlagueIncSymulator/Data/Images/death.png");
+        iVirus = new ImageIcon("PlagueIncSymulator/Data/Images/virus.png");
+        iTimeSpeed1 = new ImageIcon("PlagueIncSymulator/Data/Images/PlayButton.png");
+        iTimeSpeed2 = new ImageIcon("PlagueIncSymulator/Data/Images/FasterButton.png");
+        iTimeSpeed3 = new ImageIcon("PlagueIncSymulator/Data/Images/FastestButton.png");
+        iShip = new ImageIcon("PlagueIncSymulator/Data/Images/ship_icon.png");
+        iAirPlane = new ImageIcon("PlagueIncSymulator/Data/Images/airplane_icon.png");
+
+
+        //BUTTONS
+        bTime = new JButton(iTimeSpeed1);
         bTime.setBounds(1100,20,48,48);
         bTime.addActionListener(this);
         add(bTime);
 
-        lPoints = new JLabel("Punkty");
+        bVirus = new JButton(iVirus);
+        bVirus.setBounds(650,115,70,70);
+        bVirus.addActionListener(this);
+        add(bVirus);
+
+        bDeath = new JButton(iDeath);
+        bDeath.setBounds(750,115,70,70);
+        bDeath.addActionListener(this);
+        add(bDeath);
+
+        bAirPlane = new JButton(iAirPlane);
+        bAirPlane.setBounds(650, 10, 70,70);
+        bAirPlane.addActionListener(this);
+        add(bAirPlane);
+
+        bShip = new JButton(iShip);
+        bShip.setBounds(750, 10, 70,70);
+        bShip.addActionListener(this);
+        add(bShip);
+
+
+        //LABELS
+        lDeadUpgradePrize = new JLabel(needToUpgradeKilling +"vP to upgrade");
+        lDeadUpgradePrize.setBounds(720, 205, 120,20);
+        lDeadUpgradePrize.setFont(new Font("SansSerif",Font.PLAIN,10));
+        lDeadUpgradePrize.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lDeadUpgradePrize);
+
+        lDeadLvl = new JLabel("(" + killingLvl +"/5)");
+        lDeadLvl.setBounds(750, 185, 70,20);
+        lDeadLvl.setFont(new Font("SansSerif",Font.PLAIN,14));
+        lDeadLvl.setHorizontalAlignment(SwingConstants.CENTER);
+        lDeadLvl.setForeground(Color.red);
+        add(lDeadLvl);
+
+        lVirusUpgradePrize = new JLabel(needToUpgradeInfecting+"vP to upgrade");
+        lVirusUpgradePrize.setBounds(620, 205, 120,20);
+        lVirusUpgradePrize.setFont(new Font("SansSerif",Font.PLAIN,10));
+        lVirusUpgradePrize.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lVirusUpgradePrize);
+
+        lVirusLevel = new JLabel("(" + infectingLvl +"/3)");
+        lVirusLevel.setBounds(650, 185, 70,20);
+        lVirusLevel.setFont(new Font("SansSerif",Font.PLAIN,14));
+        lVirusLevel.setHorizontalAlignment(SwingConstants.CENTER);
+        lVirusLevel.setForeground(Color.red);
+        add(lVirusLevel);
+
+        lPlanePrize = new JLabel("10 vP to activate");
+        lPlanePrize.setBounds(620, 90, 120,20);
+        lPlanePrize.setFont(new Font("SansSerif",Font.PLAIN,10));
+        lPlanePrize.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lPlanePrize);
+
+        lShipPrize = new JLabel("10 vP to activate");
+        lShipPrize.setBounds(720, 90, 120,20);
+        lShipPrize.setFont(new Font("SansSerif",Font.PLAIN,10));
+        lShipPrize.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lShipPrize);
+
+        lShipStatus = new JLabel("Disable");
+        lShipStatus.setBounds(750, 70, 70,30);
+        lShipStatus.setFont(new Font("SansSerif",Font.PLAIN,14));
+        lShipStatus.setForeground(Color.red);
+        lShipStatus.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lShipStatus);
+
+        lPlaneStatus = new JLabel("Disable");
+        lPlaneStatus.setBounds(650, 70, 70,30);
+        lPlaneStatus.setFont(new Font("SansSerif",Font.PLAIN,14));
+        lPlaneStatus.setForeground(Color.red);
+        lPlaneStatus.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lPlaneStatus);
+
+        lTimeSpeed = new JLabel("Time speed");
+        lTimeSpeed.setBounds(1075 , 68, 100,30);
+        lTimeSpeed.setFont(new Font("SansSerif",Font.PLAIN,14));
+        lTimeSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+        add(lTimeSpeed);
+
+        lPoints = new JLabel("vPoints");
         lPoints.setBounds(400, 20, 300,30);
         lPoints.setFont(new Font("SansSerif",Font.PLAIN,24));
         lPoints.setHorizontalAlignment(SwingConstants.CENTER);
         add(lPoints);
 
-        lHealthy = new JLabel("Zdrowi");
+        lHealthy = new JLabel("Healthy");
         lHealthy.setBounds(20, 250, 300,50);
         lHealthy.setFont(new Font("SansSerif",Font.PLAIN,24));
         lHealthy.setHorizontalAlignment(SwingConstants.CENTER);
         add(lHealthy);
 
-        lInfected = new JLabel("Zarażeni");
+        lInfected = new JLabel("Infected");
         lInfected.setBounds(350, 250, 300,50);
         lInfected.setFont(new Font("SansSerif",Font.PLAIN,24));
         lInfected.setHorizontalAlignment(SwingConstants.CENTER);
         add(lInfected);
 
-        lDead = new JLabel("Zmarli");
+        lDead = new JLabel("Dead");
         lDead.setBounds(700, 250, 300,50);
         lDead.setFont(new Font("SansSerif",Font.PLAIN,24));
         lDead.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,29 +183,36 @@ public class GUI extends JFrame implements ActionListener {
         lDay.setFont(new Font("SansSerif",Font.PLAIN,24));
         add(lDay);
 
+
+        //TEXTAREA
         tHealtyCoutries = new JTextArea("");
         tHealtyCoutries.setEditable(false);
         tHealtyCoutries.setLineWrap(true);
         tHealtyCoutries.setWrapStyleWord(true);
         tHealtyCoutries.setFont(new Font("SansSerif",Font.PLAIN,15));
-        spHealthy = new JScrollPane(tHealtyCoutries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        spHealthy.setBounds(20,300,300,300);
-        add(spHealthy);
 
         tInfectedCountries = new JTextArea("");
         tInfectedCountries.setEditable(false);
         tInfectedCountries.setLineWrap(true);
         tInfectedCountries.setWrapStyleWord(true);
         tInfectedCountries.setFont(new Font("SansSerif",Font.PLAIN,15));
-        spInfected = new JScrollPane(tInfectedCountries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        spInfected.setBounds(350,300,300,300);
-        add(spInfected);
 
         tDeadCoutries = new JTextArea("");
         tDeadCoutries.setEditable(false);
         tDeadCoutries.setLineWrap(true);
         tDeadCoutries.setWrapStyleWord(true);
         tDeadCoutries.setFont(new Font("SansSerif",Font.PLAIN,15));
+
+
+        //SCROLLAREA
+        spHealthy = new JScrollPane(tHealtyCoutries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        spHealthy.setBounds(20,300,300,300);
+        add(spHealthy);
+
+        spInfected = new JScrollPane(tInfectedCountries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        spInfected.setBounds(350,300,300,300);
+        add(spInfected);
+
         spdead = new JScrollPane(tDeadCoutries,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         spdead.setBounds(700,300,300,300);
         add(spdead);
@@ -130,8 +228,8 @@ public class GUI extends JFrame implements ActionListener {
         firstInfected.newInfectedConfiguration();
         String healthyCoutries, infectedCoutries, deadCoutries;
         while( World.deadPopulation != World.population && World.infectedCountries.size() > 0){
-            lDay.setText("Dzień: " + World.day);
-            lPoints.setText("Punkty: " + World.virus.getPoints());
+            lDay.setText("Day: " + World.day);
+            lPoints.setText("vPoints: " + World.virus.getPoints());
             healthyCoutries = "";
             infectedCoutries = "";
             deadCoutries = "";
@@ -162,38 +260,68 @@ public class GUI extends JFrame implements ActionListener {
                 suma += x.getInfectedPopulation();
             }
             World.infectedPopulation = suma;
-            lHealthyPopulation.setText("Zdrowi: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
-            lDeadPopulation.setText("Zmarli: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
-            lInfectedPopulation.setText("Zarażeni: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+            lHealthyPopulation.setText("Healthy: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
+            lInfectedPopulation.setText("Infected: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+            lDeadPopulation.setText("Dead: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
 
             repaint();
-            if(World.day%30 == 0)World.virus.addPoint();
+            if(World.day%50 == 0)World.virus.addPoint();
             World.day++;
-            System.out.println("DAY" + World.day
-            );
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object zrodlo = e.getSource();
-        if(zrodlo == bTime){
-            if(timelvl == 1) {
-                bTime.setIcon(lvl2);
-                timelvl++;
+        Object source = e.getSource();
+        if(source == bTime){
+            if(timeLvl == 1) {
+                bTime.setIcon(iTimeSpeed2);
+                timeLvl++;
                 World.speedup_time();
             }
-            else if (timelvl == 2) {
-                bTime.setIcon(lvl3);
-                timelvl++;
+            else if (timeLvl == 2) {
+                bTime.setIcon(iTimeSpeed3);
+                timeLvl++;
                 World.speedup_time();
             }
             else {
-                bTime.setIcon(lvl1);
-                timelvl =1;
+                bTime.setIcon(iTimeSpeed1);
+                timeLvl =1;
                 World.speedup_time();
             }
-
+        } else if (source == bAirPlane && !airPlane && World.virus.getPoints() >= 10) {
+            airPlane = true;
+            World.virus.setPoints(World.virus.getPoints() - 10);
+            World.virus.setOnAirplane();
+            lPlanePrize.setText("");
+            lPlaneStatus.setText("Activate");
+            lPlaneStatus.setForeground(Color.green);
+        }
+        else if (source == bShip && !ship && World.virus.getPoints() >= 10) {
+            ship = true;
+            World.virus.setPoints(World.virus.getPoints() - 10);
+            World.virus.setOnAirplane();
+            lShipPrize.setText("");
+            lShipStatus.setText("Activate");
+            lShipStatus.setForeground(Color.green);
+        }
+        else if (source == bVirus && infectingLvl<3 && World.virus.getPoints() >= needToUpgradeInfecting) {
+            World.virus.setPoints(World.virus.getPoints() - needToUpgradeInfecting);
+            needToUpgradeInfecting+=8;
+            infectingLvl++;
+            lVirusLevel.setText("(" + infectingLvl +"/3)");
+            lVirusUpgradePrize.setText(needToUpgradeInfecting+"vP to upgrade");
+            World.virus.setCheanseForInfection(World.virus.getCheanseForInfection() + 0.05);
+            if(infectingLvl == 3)lVirusUpgradePrize.setText("max upgraded");
+        }
+        else if (source == bDeath && killingLvl<5 && World.virus.getPoints() >= needToUpgradeKilling) {
+            World.virus.setPoints(World.virus.getPoints() - needToUpgradeKilling);
+            needToUpgradeKilling+=10;
+            killingLvl++;
+            lDeadLvl.setText("(" + killingLvl +"/5)");
+            lDeadUpgradePrize.setText(needToUpgradeKilling+"vP to upgrade");
+            World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.01);
+            if(killingLvl == 3)lVirusUpgradePrize.setText("max upgraded");
         }
     }
 }
