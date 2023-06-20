@@ -117,7 +117,6 @@ public class    Country {
     public int getFlightsAmout(){return availableFlights.size();}
     /**
      * Dodaje lot
-     * @return nowy lot
      */
 
     public void addFlight(String flight){availableFlights.add(flight);}
@@ -128,7 +127,6 @@ public class    Country {
     public int getShipCruisesAmount(){return availableShipCruise.size();}
     /**
      * Dodaje rejs
-     * @return rejs
      */
     public void addShipCruise(String flight){availableShipCruise.add(flight);}
     /**
