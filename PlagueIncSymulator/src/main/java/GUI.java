@@ -321,7 +321,7 @@ public class GUI extends JFrame implements ActionListener {
             killingLvl++;
             lDeadLvl.setText("(" + killingLvl +"/5)");
             lDeadUpgradePrize.setText(needToUpgradeKilling+"vP to upgrade");
-            World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.01);
+            World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.005);
             if(killingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
         }
     }
