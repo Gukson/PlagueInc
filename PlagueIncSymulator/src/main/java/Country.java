@@ -153,7 +153,8 @@ public class    Country {
      * @return liczba zgonow
      */
     public long killInfectedPeople(long people){
-        long deaths = (long) (Math.ceil(people * World.virus.cheanseForDeath)); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
+        double chance4Dead = World.virus.cheanseForDeath + temperature * 0.001;
+        long deaths = (long) (Math.ceil(people * chance4Dead)); // to * 0.1 mozna zamienic na chance4Death jak zostanie dodane do gui
         if (deadPopulation + deaths < population){
             deadPopulation += deaths;
             infectedPopulation -= deaths;
