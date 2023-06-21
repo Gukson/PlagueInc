@@ -1,5 +1,6 @@
 import javax.lang.model.element.Name;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 /**
@@ -134,7 +135,11 @@ public class    Country {
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
+<<<<<<< Updated upstream
         int randomNumber = random.nextInt((int)(population*0.2)) + 1;
+=======
+        int randomNumber = random.nextInt((int)(population*0.001)) + 1;
+>>>>>>> Stashed changes
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){
@@ -163,6 +168,7 @@ public class    Country {
             healthyPopulation = 0;
             infectedPopulation = 0;
             World.deadPopulation += acudeath;
+            Arrays.fill(infectedLast14Days,0);
             return 0;
         }
         return deaths;
@@ -173,18 +179,33 @@ public class    Country {
      *
      */
     public void killingHealthyPopulation(){
-        long sum = 0;
+        long sumOfInfectedInArray = 0;
         int index = World.day % 14; // AKTUALNY INDEX
         int nextIndex = (index + 1 )% 14; // NASTEPNY INDEX
+<<<<<<< Updated upstream
         for (int i =0 ;i<14;i++){
             sum += infectedLast14Days[i];
         }
         if(World.day > 14){
             long dead = killInfectedPeople((infectedLast14Days[index]));
             infectedLast14Days[index] -= dead;
+=======
+            for (int i =0 ;i<14;i++){
+                sumOfInfectedInArray += infectedLast14Days[i];
+            }
+        if(World.virus.getCheanseForDeath() > 0) {
+            virusedDay ++;
+        }
+        if(World.day > 14){
+            if(virusedDay >=14 && infectedLast14Days[index] > 0){
+                long dead = killInfectedPeople((infectedLast14Days[index]));{
+                infectedLast14Days[index] -= dead;
+                }
+            }
+>>>>>>> Stashed changes
             long moveInfected = infectedLast14Days[index];
             infectedLast14Days[nextIndex] += moveInfected;
-            infectedLast14Days[index] = infectedPopulation - sum;
+            infectedLast14Days[index] = infectedPopulation - sumOfInfectedInArray;
         }
 
     }
