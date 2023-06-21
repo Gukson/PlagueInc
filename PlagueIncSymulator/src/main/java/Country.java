@@ -136,7 +136,7 @@ public class    Country {
     public void infectYourNeighbor(){
         if(neighbours.length == 1 && Objects.equals(neighbours[0], "None")) return;
         Random random = new Random();
-        int randomNumber = random.nextInt((int)(population*0.01)) + 1;
+        int randomNumber = random.nextInt((int)(population*0.005)) + 1;
         if(randomNumber <= infectedPopulation){
             ArrayList<Country> notInfected = notInfectedNeighbours();
             if(notInfected.size() != 0){
@@ -186,13 +186,14 @@ public class    Country {
         }
         if(World.day > 14){
             if(virusedDay >=14){
-            long dead = killInfectedPeople((infectedLast14Days[index]));
-            infectedLast14Days[index] -= dead;
+                long dead = killInfectedPeople((infectedLast14Days[index]));
+                infectedLast14Days[index] -= dead;
             }
             long moveInfected = infectedLast14Days[index];
             infectedLast14Days[nextIndex] += moveInfected;
             infectedLast14Days[index] = infectedPopulation - sum;
         }
+
     }
 
 
