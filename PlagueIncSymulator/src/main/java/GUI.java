@@ -258,7 +258,12 @@ public class GUI extends JFrame implements ActionListener {
             }
             tInfectedCountries.setText(infectedCoutries);
             tDeadCoutries.setText(deadCoutries);
-            lHealthyPopulation.setText("Healthy: " + Long.toString(World.healthyPopulation- World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
+            long suma = 0;
+            for(Country x: World.infectedCountries){
+                suma += x.getInfectedPopulation();
+            }
+            World.infectedPopulation = suma;
+            lHealthyPopulation.setText("Healthy: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
             lInfectedPopulation.setText("Infected: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
             lDeadPopulation.setText("Dead: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
 
@@ -267,11 +272,6 @@ public class GUI extends JFrame implements ActionListener {
             World.day++;
         }
     }
-    /**
-     * Obsługa zdarzen akcji.
-     *
-     * @param e zdarzenie akcji
-     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
