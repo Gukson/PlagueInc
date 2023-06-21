@@ -252,19 +252,18 @@ public class GUI extends JFrame implements ActionListener {
                 healthyCoutries += c.getName() + ": " + c.getHealthyPopulation() + " (" + Math.round((float) c.getHealthyPopulation() / c.getPopulation() * 100) + "%)\n";
             }
             tHealtyCoutries.setText(healthyCoutries);
+            long sum = 0;
             for(Country c: World.infectedCountries){
                 infectedCoutries += c.getName() + ": " + c.getInfectedPopulation() + " (" + Math.round((float) c.getInfectedPopulation() / c.getPopulation() * 100) + "%)\n";
                 deadCoutries += c.getName() + ": " + c.getDeadPopulation() + " (" + Math.round((float) c.getDeadPopulation() / c.getPopulation() * 100) + "%)\n";
+                sum += c.getInfectedPopulation();
             }
             tInfectedCountries.setText(infectedCoutries);
             tDeadCoutries.setText(deadCoutries);
-            long suma = 0;
-            for(Country x: World.infectedCountries){
-                suma += x.getInfectedPopulation();
-            }
-            World.infectedPopulation = suma;
-            lHealthyPopulation.setText("Healthy: " + Long.toString(World.healthyPopulation - World.infectedPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
-            lInfectedPopulation.setText("Infected: " + Long.toString(World.infectedPopulation) + " (" + Math.round((float) World.infectedPopulation / World.population * 100) + "%)");
+
+
+            lHealthyPopulation.setText("Alive: " + Long.toString(World.healthyPopulation - World.deadPopulation) + " (" + Math.round((float) (World.healthyPopulation- World.infectedPopulation - World.deadPopulation) / World.population * 100) + "%)");
+            lInfectedPopulation.setText("Infected: " + Long.toString(sum) + " (" + Math.round((float) sum / World.population * 100) + "%)");
             lDeadPopulation.setText("Dead: " + Long.toString(World.deadPopulation) + " (" + Math.round((float) World.deadPopulation / World.population * 100) + "%)");
 
             repaint();
@@ -272,7 +271,6 @@ public class GUI extends JFrame implements ActionListener {
             World.day++;
         }
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -323,7 +321,7 @@ public class GUI extends JFrame implements ActionListener {
             killingLvl++;
             lDeadLvl.setText("(" + killingLvl +"/5)");
             lDeadUpgradePrize.setText(needToUpgradeKilling+"vP to upgrade");
-            World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.01);
+            World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.005);
             if(killingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
         }
     }
