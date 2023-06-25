@@ -1,0 +1,11 @@
+Airplane upgrade: 1418
+Ship upgrade: 1419
+2nd Infection upgrade: 1430
+3rd Infection upgrade: 1431
+1st Killing upgrade: 1436
+2nd Killing upgrade: 1437
+3rd Killing upgrade: 1438
+4th Killing upgrade: 1439
+5th Killing upgrade: 1439
+End of Game: 2026
+If the value is 0, it means that the upgrade has not been performed.
