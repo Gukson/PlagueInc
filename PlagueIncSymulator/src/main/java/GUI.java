@@ -10,6 +10,7 @@ import java.util.Random;
  * Klasa GUI reprezentujaca interfejs graficzny symulacji.
  */
 public class GUI extends JFrame implements ActionListener {
+    public static Save save;
     private final int width = 1200;
     private final int height = 675;
     JLabel lHealthyPopulation, lInfectedPopulation, lDeadPopulation, lDay, lHealthy, lInfected, lDead, lPoints,
@@ -219,7 +220,7 @@ public class GUI extends JFrame implements ActionListener {
         add(spdead);
 
 
-
+        save = new Save();
         World.day = 1;
         World.infectedPopulation = 0;
         World.healthyPopulation = World.population;
@@ -270,6 +271,8 @@ public class GUI extends JFrame implements ActionListener {
             if(World.day%50 == 0)World.virus.addPoint();
             World.day++;
         }
+        save.addEndGameDay(World.day);
+        save.saveData();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -297,6 +300,7 @@ public class GUI extends JFrame implements ActionListener {
             lPlanePrize.setText("");
             lPlaneStatus.setText("Activate");
             lPlaneStatus.setForeground(Color.green);
+            save.addAirPlaneDay(World.day);
         }
         else if (source == bShip && !ship && World.virus.getPoints() >= 10) {
             ship = true;
@@ -305,6 +309,7 @@ public class GUI extends JFrame implements ActionListener {
             lShipPrize.setText("");
             lShipStatus.setText("Activate");
             lShipStatus.setForeground(Color.green);
+            save.addShipDay(World.day);
         }
         else if (source == bVirus && infectingLvl<3 && World.virus.getPoints() >= needToUpgradeInfecting) {
             World.virus.setPoints(World.virus.getPoints() - needToUpgradeInfecting);
@@ -314,6 +319,7 @@ public class GUI extends JFrame implements ActionListener {
             lVirusUpgradePrize.setText(needToUpgradeInfecting+"vP to upgrade");
             World.virus.setCheanseForInfection(World.virus.getCheanseForInfection() + 0.05);
             if(infectingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
+            save.addInfectingProcessDay(infectingLvl,World.day);
         }
         else if (source == bDeath && killingLvl<5 && World.virus.getPoints() >= needToUpgradeKilling) {
             World.virus.setPoints(World.virus.getPoints() - needToUpgradeKilling);
@@ -323,6 +329,7 @@ public class GUI extends JFrame implements ActionListener {
             lDeadUpgradePrize.setText(needToUpgradeKilling+"vP to upgrade");
             World.virus.setCheanseForDeath(World.virus.getCheanseForDeath() + 0.005);
             if(killingLvl == 3)lVirusUpgradePrize.setText("max upgrade");
+            save.addKillingProcessDay(killingLvl,World.day);
         }
     }
 }

@@ -20,6 +20,7 @@ public class Configurator {
         long population = calculateWorldPopulation();
         World.time = 420;
         World.setPopulation(population);
+
     }
 
     /**
