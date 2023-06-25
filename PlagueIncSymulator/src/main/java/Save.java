@@ -18,7 +18,7 @@ public class Save {
         LocalDate dateObj = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         String date = dateObj.format(formatter);
-        filename = new File("PlagueIncSymulator/Data/"+date+".txt");
+        filename = new File("PlagueIncSymulator/Data/result.txt");
 
         saveMap = new HashMap<String,Integer>();
         saveMap.put("AirPlane",0);
